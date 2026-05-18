@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Enfoque Mundial</title>
+    <meta name="description" content="Contáctanos en Enfoque Mundial. Estamos disponibles para consultas, colaboraciones y comunicados de prensa.">
+    <meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag("js", new Date());
+        gtag("config", "G-JGGDQ7PN0E");
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .logo-nav img { height: 80px; width: auto; transition: transform 0.3s ease; }
+        input, textarea, select {
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #000;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <div class="h-1 bg-black"></div>
+
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-28 grid grid-cols-3 items-center">
+            <div class="flex justify-start">
+                <button onclick="history.back()" class="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Volver">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="flex justify-center">
+                <div class="logo-nav cursor-pointer" onclick="location.href='index.html'">
+                    <img src="logo/logo vectorizado.svg" alt="Enfoque Mundial - Inicio">
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 py-12">
+        <header class="mb-12 text-center">
+            <p class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">Escríbenos</p>
+            <h1 class="text-4xl md:text-5xl font-serif font-bold leading-tight">Contacto</h1>
+            <p class="text-gray-500 mt-4 max-w-xl mx-auto">¿Tienes una historia, una consulta o una propuesta de colaboración? Nos encanta escuchar a nuestra comunidad.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <!-- Info de contacto -->
+            <div class="space-y-8">
+                <div class="bg-gray-50 rounded-2xl p-8">
+                    <h2 class="font-bold text-lg mb-6">Información de contacto</h2>
+
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">Correo general</p>
+                                <a href="mailto:contacto@enfoquemundial.com" class="font-semibold text-black hover:text-blue-600 transition-colors">contacto@enfoquemundial.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="newspaper" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">Notas de prensa</p>
+                                <a href="mailto:redaccion@enfoquemundial.com" class="font-semibold text-black hover:text-blue-600 transition-colors">redaccion@enfoquemundial.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="megaphone" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">Publicidad</p>
+                                <a href="mailto:publicidad@enfoquemundial.com" class="font-semibold text-black hover:text-blue-600 transition-colors">publicidad@enfoquemundial.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-8">
+                    <h2 class="font-bold text-lg mb-3">Horario de atención</h2>
+                    <p class="text-gray-500 text-sm leading-relaxed">Atendemos consultas de lunes a viernes. Respondemos todos los mensajes en un plazo máximo de 48 horas hábiles.</p>
+                </div>
+
+                <div class="bg-blue-50 rounded-2xl p-8 border border-blue-100">
+                    <h2 class="font-bold text-lg mb-3">¿Eres periodista o colaborador?</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed">Si tienes interés en colaborar con nuestro equipo editorial, envíanos tu propuesta de columna o historia a <a href="mailto:redaccion@enfoquemundial.com" class="text-blue-600 font-semibold underline">redaccion@enfoquemundial.com</a>.</p>
+                </div>
+            </div>
+
+            <!-- Formulario -->
+            <div>
+                <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
+                    <h2 class="font-bold text-lg mb-6">Envíanos un mensaje</h2>
+                    <div id="form-container">
+                        <div class="space-y-5">
+                            <div>
+                                <label for="nombre" class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Nombre *</label>
+                                <input type="text" id="nombre" placeholder="Tu nombre completo" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Correo electrónico *</label>
+                                <input type="email" id="email" placeholder="tu@correo.com" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50">
+                            </div>
+                            <div>
+                                <label for="asunto" class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Asunto</label>
+                                <select id="asunto" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-gray-700">
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="consulta">Consulta general</option>
+                                    <option value="nota-prensa">Nota de prensa</option>
+                                    <option value="colaboracion">Colaboración editorial</option>
+                                    <option value="publicidad">Publicidad</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="mensaje" class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Mensaje *</label>
+                                <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 resize-none"></textarea>
+                            </div>
+                            <button onclick="enviarFormulario()" class="w-full bg-black text-white py-3.5 rounded-xl font-bold text-sm hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Enviar mensaje
+                            </button>
+                            <p class="text-gray-400 text-xs text-center">Al enviar aceptas nuestra <a href="privacidad.html" class="underline hover:text-black">Política de Privacidad</a>.</p>
+                        </div>
+                    </div>
+                    <div id="form-success" class="hidden text-center py-10">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">¡Mensaje enviado!</h3>
+                        <p class="text-gray-500 text-sm">Te responderemos en un plazo máximo de 48 horas hábiles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 mt-20">
+        <div class="max-w-7xl mx-auto px-4 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+                <div>
+                    <img src="logo/logo vectorizado.svg" class="h-10 mb-4 brightness-0 invert opacity-80" alt="Enfoque Mundial">
+                    <p class="text-sm text-gray-400 leading-relaxed">Periodismo global con perspectiva. Información verificada, análisis profundo y cobertura internacional.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">El Medio</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="sobre-nosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+                        <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacidad.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                        <li><a href="terminos.html" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
+                <p>© 2025 Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function enviarFormulario() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            if (!nombre || !email || !mensaje) {
+                alert('Por favor, completa los campos obligatorios: Nombre, Correo y Mensaje.');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, introduce un correo electrónico válido.');
+                return;
+            }
+
+            // mailto fallback (funciona sin backend)
+            const asunto = document.getElementById('asunto').value || 'Consulta general';
+            const mailtoBody = encodeURIComponent(`Nombre: ${nombre}\nCorreo: ${email}\nAsunto: ${asunto}\n\nMensaje:\n${mensaje}`);
+            const mailtoLink = `mailto:contacto@enfoquemundial.com?subject=${encodeURIComponent('Contacto web - ' + asunto)}&body=${mailtoBody}`;
+
+            window.location.href = mailtoLink;
+
+            // Mostrar confirmación visual
+            document.getElementById('form-container').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
