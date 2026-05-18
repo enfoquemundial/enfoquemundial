@@ -1,93 +1,452 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .hidden { display: none !important; }
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login | Enfoque Mundial</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#020c1a;font-family:'Segoe UI',system-ui,sans-serif}
+
+#bg-wrap{position:fixed;inset:0;z-index:0}
+#bg-wrap canvas{display:block;width:100%;height:100%}
+
+#screen{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;pointer-events:none}
+
+.card{
+  pointer-events:all;
+  width:420px;
+  background:rgba(2,10,24,0.72);
+  border:1px solid rgba(40,110,255,0.22);
+  border-radius:20px;
+  padding:44px 40px 38px;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:
+    0 0 0 1px rgba(40,110,255,0.06),
+    0 32px 80px rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(90,160,255,0.12),
+    inset 0 -1px 0 rgba(237,50,55,0.06);
+  animation:cardIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(28px) scale(0.97)}to{opacity:1;transform:none}}
+
+.logo-area{
+  display:flex;flex-direction:column;align-items:center;
+  margin-bottom:32px;
+  gap:0;
+}
+.logo-img{
+  width:220px;height:auto;
+  filter:brightness(0) invert(1);
+  opacity:0.95;
+  animation:fadeUp 0.6s 0.15s both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.divider-line{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(40,110,255,0.25),rgba(237,50,55,0.18),transparent);
+  margin-top:24px;
+}
+
+.headline{
+  font-size:17px;font-weight:500;
+  color:rgba(190,220,255,0.9);
+  letter-spacing:0.01em;
+  margin:22px 0 4px;
+  animation:fadeUp 0.5s 0.25s both;
+}
+.subline{
+  font-size:13px;color:rgba(90,140,210,0.65);
+  margin-bottom:28px;
+  animation:fadeUp 0.5s 0.3s both;
+}
+
+.field{
+  margin-bottom:16px;
+  animation:fadeUp 0.5s both;
+}
+.field:nth-child(1){animation-delay:0.35s}
+.field:nth-child(2){animation-delay:0.42s}
+
+label{
+  display:block;
+  font-size:11px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(100,150,220,0.7);
+  margin-bottom:7px;
+}
+.inp-wrap{position:relative}
+.inp-wrap .ico{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;opacity:0.45;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.inp-wrap .ico svg{width:16px;height:16px;stroke:rgba(80,160,255,1);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+input[type=email],input[type=password],input[type=text]{
+  width:100%;height:46px;
+  background:rgba(5,18,45,0.65);
+  border:1px solid rgba(30,90,220,0.22);
+  border-radius:10px;
+  color:#c8dcff;
+  font-size:14px;
+  font-family:inherit;
+  padding:0 44px 0 42px;
+  outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;
+  -webkit-appearance:none;
+}
+input::placeholder{color:rgba(70,120,200,0.38)}
+input:focus{
+  border-color:rgba(50,130,255,0.5);
+  background:rgba(5,18,45,0.88);
+  box-shadow:0 0 0 3px rgba(30,100,255,0.1),0 0 20px rgba(30,100,255,0.05);
+}
+
+.eye-btn{
+  position:absolute;right:13px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;padding:3px;
+  color:rgba(60,130,255,0.4);
+  display:flex;align-items:center;
+  transition:color 0.15s;
+}
+.eye-btn:hover{color:rgba(80,160,255,0.8)}
+.eye-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.row{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:4px 0 26px;
+  animation:fadeUp 0.5s 0.48s both;
+}
+.chk-wrap{display:flex;align-items:center;gap:8px;cursor:pointer}
+.chk-wrap input[type=checkbox]{
+  width:15px;height:15px;
+  accent-color:#2a7fff;cursor:pointer;
+  background:rgba(5,18,45,0.7);
+  border-radius:4px;
+  flex-shrink:0;
+}
+.chk-wrap span{font-size:12px;color:rgba(100,150,210,0.7)}
+
+.btn-primary{
+  width:100%;height:48px;
+  background:linear-gradient(135deg,#1b5fff 0%,#0d3dcc 100%);
+  border:none;border-radius:10px;
+  color:#ddeeff;font-size:14px;font-weight:600;
+  font-family:inherit;letter-spacing:0.04em;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:opacity 0.15s,transform 0.1s,box-shadow 0.2s;
+  box-shadow:0 6px 24px rgba(20,80,255,0.4),inset 0 1px 0 rgba(255,255,255,0.12);
+  animation:fadeUp 0.5s 0.53s both;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.07) 0%,transparent 50%);
+  border-radius:inherit;
+}
+.btn-primary:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 10px 32px rgba(20,80,255,0.5),inset 0 1px 0 rgba(255,255,255,0.12)}
+.btn-primary:active{transform:scale(0.985)}
+
+.footer-note{
+  text-align:center;margin-top:22px;
+  font-size:12px;color:rgba(70,120,190,0.5);
+  animation:fadeUp 0.5s 0.66s both;
+}
+.footer-note a{color:rgba(60,140,255,0.75);text-decoration:none;transition:color 0.15s}
+.footer-note a:hover{color:#7ab8ff}
+
+.status-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(15,50,120,0.3);
+  border:1px solid rgba(30,100,200,0.2);
+  border-radius:20px;padding:4px 12px;
+  margin-bottom:20px;
+  animation:fadeUp 0.5s 0.2s both;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:#3a9fff;flex-shrink:0;animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.status-badge span{font-size:11px;color:rgba(80,155,255,0.8);letter-spacing:0.05em}
+
+.accent-line{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:60%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(237,50,55,0.5),rgba(30,100,255,0.5),transparent);
+  border-radius:2px;
+}
+.card{position:relative}
+.error-text {
+  color: #ff5555;
+  background: rgba(255, 50, 50, 0.15);
+  border: 1px solid rgba(255, 50, 50, 0.3);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(255, 50, 50, 0.2);
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+</style>
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-black text-white p-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
-            </div>
-            <span class="font-bold uppercase tracking-tighter">Admin Panel</span>
+<body>
+
+<div id="bg-wrap">
+  <canvas id="c"></canvas>
+</div>
+
+<div id="screen">
+  <div class="card">
+    <div class="accent-line"></div>
+
+    <div class="logo-area">
+      <img class="logo-img" src="../logo/logo vectorizado.svg" alt="Logo"/>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="status-badge">
+      <div class="dot"></div>
+      <span>SISTEMA GLOBAL — ADMIN</span>
+    </div>
+
+    <div class="headline">Acceso Administrativo</div>
+    <div class="subline">Inicia sesión para gestionar el portal</div>
+
+    <form id="login-form">
+      <div class="field">
+        <label>Correo electrónico</label>
+        <div class="inp-wrap">
+          <div class="ico">
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          </div>
+          <input type="email" id="email" placeholder="usuario@empresa.com" autocomplete="email"/>
         </div>
-        <div class="flex gap-4 items-center">
-            <button onclick="showSection('dashboard')" class="text-[10px] font-bold uppercase hover:text-blue-400">Lista</button>
-            <button onclick="showSection('create')" class="text-[10px] font-bold uppercase hover:text-blue-400">Nueva Noticia</button>
-            <button onclick="resetGitHubConfig()" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition-all border border-gray-700" title="Configurar GitHub">
-                <i data-lucide="settings" class="w-4 h-4 text-gray-300"></i>
-            </button>
-            <button onclick="logout()" class="text-[10px] font-bold uppercase text-red-500">Salir</button>
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <div class="inp-wrap">
+          <div class="ico">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <input type="password" id="pwd" placeholder="••••••••••" autocomplete="current-password"/>
+          <button class="eye-btn" onclick="toggleEye()" type="button" aria-label="Mostrar contraseña">
+            <svg id="eye-ico" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
         </div>
-    </nav>
+      </div>
 
-    <main class="p-4 max-w-4xl mx-auto">
-        <!-- LISTADO -->
-        <div id="section-dashboard">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold">Noticias</h2>
-                <button onclick="showSection('create')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-200">+ Crear</button>
-            </div>
-            <div id="admin-news-list" class="space-y-3"></div>
-        </div>
+      <div class="row">
+        <label class="chk-wrap">
+          <input type="checkbox"/>
+          <span>Recordar sesión</span>
+        </label>
+      </div>
 
-        <!-- FORMULARIO -->
-        <div id="section-create" class="hidden">
-            <div class="bg-white p-6 rounded-3xl shadow-sm border">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold">Redactar Noticia</h2>
-                    <button onclick="showSection('dashboard')" class="text-gray-400"><i data-lucide="x" class="w-6 h-6"></i></button>
-                </div>
+      <div id="error-msg" class="error-text">Acceso denegado. Verifique sus credenciales.</div>
+      <button class="btn-primary" type="submit" id="login-btn">SINCRONIZAR ACCESO</button>
+    </form>
 
-                <form id="news-form" class="space-y-4">
-                    <input type="hidden" id="edit-id">
-                    <input type="text" id="title" placeholder="Título" class="w-full p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500" required>
+    <div class="footer-note">
+      <a href="../index.html">← Volver a la web pública</a>
+    </div>
+  </div>
+</div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex gap-2">
-                            <select id="category" class="flex-1 p-3 bg-gray-50 rounded-xl outline-none"></select>
-                            <button type="button" onclick="addNewCategory()" class="p-3 bg-gray-100 rounded-xl text-gray-600 hover:bg-gray-200"><i data-lucide="plus" class="w-4 h-4"></i></button>
-                        </div>
-                        <input type="text" id="author" placeholder="Autor" class="p-3 bg-gray-50 rounded-xl outline-none">
-                    </div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+function toggleEye(){
+  const i=document.getElementById('pwd');
+  const ic=document.getElementById('eye-ico');
+  if(i.type==='password'){
+    i.type='text';
+    ic.innerHTML='<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+  } else {
+    i.type='password';
+    ic.innerHTML='<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  }
+}
 
-                    <textarea id="content" placeholder="Contenido..." rows="8" class="w-full p-4 bg-gray-50 rounded-2xl outline-none" required></textarea>
+// Lógica de acceso (29quezada@gmail.com / E40211233768q)
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('login-form');
+  const errorDiv = document.getElementById('error-msg');
+  const emailInp = document.getElementById('email');
+  const pwdInp = document.getElementById('pwd');
 
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-400 uppercase ml-2">Imágenes</label>
-                        <div id="image-preview-container" class="flex gap-2 overflow-x-auto py-2"></div>
+  function attemptLogin() {
+    const u = emailInp.value;
+    const p = pwdInp.value;
 
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-200 rounded-2xl cursor-pointer hover:bg-blue-50 hover:border-blue-200 transition-all">
-                                <input type="file" class="hidden" accept="image/*" multiple onchange="handleFileUpload(this)">
-                                <i data-lucide="image" class="w-6 h-6 text-blue-500 mb-1"></i>
-                                <span class="text-blue-600 font-bold text-xs">Subir fotos</span>
-                            </label>
+    if (u === '29quezada@gmail.com' && p === 'E40211233768q') {
+      localStorage.setItem('enfoque_mundial_logged', 'true');
+      window.location.href = 'dashboard.html';
+    } else {
+      // Mostrar error personalizado con animación
+      errorDiv.style.display = 'block';
+      // Reiniciar animación de shake
+      errorDiv.style.animation = 'none';
+      void errorDiv.offsetWidth; // trigger reflow
+      errorDiv.style.animation = null;
+    }
+  }
 
-                            <div class="p-3 bg-gray-50 rounded-2xl flex flex-col justify-center">
-                                <input type="text" id="image-url" placeholder="URL externa..." class="w-full p-2 bg-white rounded-lg border-none outline-none mb-2 text-xs">
-                                <button type="button" onclick="addImage()" class="w-full bg-black text-white py-2 rounded-lg text-[10px] font-bold">Añadir URL</button>
-                            </div>
-                        </div>
-                    </div>
+  if (form) {
+    // Manejar el envío tradicional del formulario
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      attemptLogin();
+    });
 
-                    <button type="submit" id="submit-btn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:bg-blue-700 transition-colors">Publicar Noticia</button>
-                </form>
-            </div>
-        </div>
-    </main>
+    // Asegurar que Enter funcione en los campos de texto (especialmente en móviles/webviews)
+    [emailInp, pwdInp].forEach(input => {
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          attemptLogin();
+        }
+      });
 
-    <script src="../js/admin.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
+      // Ocultar error cuando el usuario empieza a escribir de nuevo
+      input.addEventListener('input', () => {
+        if (errorDiv.style.display === 'block') {
+          errorDiv.style.display = 'none';
+        }
+      });
+    });
+  }
+});
+
+(async()=>{
+const canvas=document.getElementById('c');
+const bgWrap=document.getElementById('bg-wrap');
+const W=window.innerWidth;
+const H=window.innerHeight;
+canvas.width=W*2;canvas.height=H*2;
+canvas.style.width=W+'px';canvas.style.height=H+'px';
+const ctx=canvas.getContext('2d');
+ctx.scale(2,2);
+
+const proj=d3.geoNaturalEarth1().scale(W/6.1).translate([W/2,H/2]);
+const path=d3.geoPath(proj,ctx);
+
+let world;
+try{const r=await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');world=await r.json();}catch(e){world=null;}
+
+const cities=[
+  {n:'New York',c:[-74,40.7]},{n:'London',c:[-0.1,51.5]},{n:'Tokyo',c:[139.7,35.7]},
+  {n:'Shanghai',c:[121.5,31.2]},{n:'Singapore',c:[103.8,1.3]},{n:'Dubai',c:[55.3,25.2]},
+  {n:'São Paulo',c:[-46.6,-23.5]},{n:'Lagos',c:[3.4,6.5]},{n:'Sydney',c:[151.2,-33.9]},
+  {n:'Mumbai',c:[72.8,19]},{n:'Moscow',c:[37.6,55.8]},{n:'Paris',c:[2.3,48.9]},
+  {n:'Frankfurt',c:[8.7,50.1]},{n:'Seoul',c:[126.9,37.6]},{n:'Chicago',c:[-87.6,41.9]},
+  {n:'Los Angeles',c:[-118.2,34]},{n:'Toronto',c:[-79.4,43.7]},{n:'Cairo',c:[31.2,30]},
+  {n:'Johannesburg',c:[28,-26.2]},{n:'Jakarta',c:[106.8,-6.2]},{n:'Beijing',c:[116.4,39.9]},
+  {n:'Mexico City',c:[-99.1,19.4]},{n:'Buenos Aires',c:[-58.4,-34.6]},{n:'Nairobi',c:[36.8,-1.3]},
+  {n:'Hong Kong',c:[114.2,22.3]},{n:'Taipei',c:[121.5,25]},{n:'Kuala Lumpur',c:[101.7,3.1]},
+  {n:'Bangkok',c:[100.5,13.8]},{n:'Amsterdam',c:[4.9,52.4]},{n:'Stockholm',c:[18.1,59.3]},
+  {n:'Zurich',c:[8.5,47.4]},{n:'Madrid',c:[-3.7,40.4]},{n:'Milan',c:[9.2,45.5]},
+  {n:'Istanbul',c:[29,41]},{n:'Karachi',c:[67.1,24.9]},{n:'Dhaka',c:[90.4,23.8]},
+  {n:'Manila',c:[120.9,14.6]},{n:'Lima',c:[-77,-12]},{n:'Bogota',c:[-74.1,4.7]},
+  {n:'Santiago',c:[-70.7,-33.5]},{n:'Casablanca',c:[-7.6,33.6]},{n:'Riyadh',c:[46.7,24.7]},
+  {n:'Tel Aviv',c:[34.8,32.1]},{n:'Vienna',c:[16.4,48.2]},{n:'Warsaw',c:[21,52.2]},
+  {n:'Osaka',c:[135.5,34.7]},{n:'Cape Town',c:[18.4,-33.9]},{n:'Vancouver',c:[-123.1,49.3]},
+  {n:'Miami',c:[-80.2,25.8]},{n:'Atlanta',c:[-84.4,33.7]}
+];
+
+const pts=cities.map(c=>{
+  const p=proj(c.c);
+  const isMajor=['New York','London','Tokyo','Shanghai','Singapore','Dubai','São Paulo','Sydney','Beijing','Moscow'].includes(c.n);
+  const isRed=['Beijing','Moscow','Lagos','Cairo','Jakarta','Karachi'].includes(c.n);
+  return{x:p[0],y:p[1],name:c.n,major:isMajor,red:isRed,pulse:Math.random()*Math.PI*2,pulseSpeed:0.02+Math.random()*0.02};
+});
+
+const extraPts=[];
+for(let i=0;i<200;i++){
+  const lon=(Math.random()-0.5)*340,lat=(Math.random()-0.5)*160;
+  const p=proj([lon,lat]);
+  if(p&&p[0]>0&&p[0]<W&&p[1]>0&&p[1]<H)
+    extraPts.push({x:p[0],y:p[1],minor:true,pulse:Math.random()*Math.PI*2,pulseSpeed:0.015+Math.random()*0.025});
+}
+const allPts=[...pts,...extraPts];
+const maxDist=W*0.17;
+const connections=[];
+for(let i=0;i<allPts.length;i++)
+  for(let j=i+1;j<allPts.length;j++){
+    const dx=allPts[i].x-allPts[j].x,dy=allPts[i].y-allPts[j].y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    if(d<maxDist) connections.push({a:i,b:j,d,strong:!allPts[i].minor&&!allPts[j].minor});
+  }
+
+let frame=0;
+function draw(){
+  frame++;
+  ctx.clearRect(0,0,W,H);
+  const bg=ctx.createRadialGradient(W/2,H*0.45,0,W/2,H*0.45,W*0.7);
+  bg.addColorStop(0,'#071426');bg.addColorStop(0.5,'#040e1e');bg.addColorStop(1,'#020810');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  if(world){
+    const land=topojson.feature(world,world.objects.countries);
+    const borders=topojson.mesh(world,world.objects.countries,(a,b)=>a!==b);
+    ctx.beginPath();path(land);ctx.fillStyle='#071d3a';ctx.fill();
+    ctx.beginPath();path(land);ctx.strokeStyle='#0d3060';ctx.lineWidth=0.4;ctx.stroke();
+    ctx.beginPath();path(borders);ctx.strokeStyle='#0a2448';ctx.lineWidth=0.3;ctx.stroke();
+    ctx.beginPath();path({type:'Sphere'});ctx.strokeStyle='#0a1e38';ctx.lineWidth=0.5;ctx.stroke();
+    const grat=d3.geoGraticule()();
+    ctx.beginPath();path(grat);ctx.strokeStyle='#0a1e35';ctx.lineWidth=0.2;ctx.globalAlpha=0.4;ctx.stroke();ctx.globalAlpha=1;
+  }
+
+  const t=frame/60;
+  for(const cn of connections){
+    const a=allPts[cn.a],b=allPts[cn.b];
+    const alpha=(1-(cn.d/maxDist));
+    const baseAlpha=cn.strong?alpha*0.55:alpha*0.2;
+    const anim=0.7+0.3*Math.sin(t*0.8+cn.a*0.3);
+    const fa=baseAlpha*anim;
+    if(fa<0.04)continue;
+    const isR=(a.red||b.red);
+    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+    ctx.strokeStyle=isR&&a.red&&b.red?`rgba(200,50,50,${fa})`:`rgba(30,120,255,${fa})`;
+    ctx.lineWidth=cn.strong?0.8:0.4;ctx.stroke();
+  }
+
+  for(const p of allPts){
+    p.pulse+=p.pulseSpeed;
+    const pv=0.6+0.4*Math.sin(p.pulse);
+    if(p.minor){
+      ctx.beginPath();ctx.arc(p.x,p.y,1.5,0,Math.PI*2);ctx.fillStyle=`rgba(50,140,255,${0.4*pv})`;ctx.fill();
+      ctx.beginPath();ctx.arc(p.x,p.y,0.7,0,Math.PI*2);ctx.fillStyle=`rgba(140,210,255,${0.7*pv})`;ctx.fill();
+      continue;
+    }
+    const isRed=p.red,r=p.major?6:3.5,cr=p.major?12:7,cc=p.major?22:12;
+    const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,cc);
+    if(isRed){g.addColorStop(0,`rgba(255,80,80,${0.3*pv})`);g.addColorStop(0.5,`rgba(200,30,30,${0.15*pv})`);g.addColorStop(1,'rgba(150,0,0,0)');}
+    else{g.addColorStop(0,`rgba(50,160,255,${0.35*pv})`);g.addColorStop(0.5,`rgba(20,100,255,${0.18*pv})`);g.addColorStop(1,'rgba(0,50,200,0)');}
+    ctx.beginPath();ctx.arc(p.x,p.y,cc,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    if(p.major){ctx.beginPath();ctx.arc(p.x,p.y,cr,0,Math.PI*2);ctx.strokeStyle=isRed?`rgba(255,100,100,${0.25*pv})`:`rgba(60,160,255,${0.25*pv})`;ctx.lineWidth=0.8;ctx.stroke();}
+    ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.fillStyle=isRed?`rgba(255,120,120,${0.85*pv})`:`rgba(80,180,255,${0.85*pv})`;ctx.fill();
+    ctx.beginPath();ctx.arc(p.x,p.y,r*0.45,0,Math.PI*2);ctx.fillStyle=isRed?`rgba(255,220,220,${0.95*pv})`:`rgba(210,240,255,${0.95*pv})`;ctx.fill();
+  }
+
+  const vign=ctx.createRadialGradient(W/2,H/2,H*0.2,W/2,H/2,W*0.7);
+  vign.addColorStop(0,'rgba(0,0,0,0)');vign.addColorStop(0.6,'rgba(2,8,20,0.2)');vign.addColorStop(1,'rgba(2,6,16,0.8)');
+  ctx.fillStyle=vign;ctx.fillRect(0,0,W,H);
+
+  requestAnimationFrame(draw);
+}
+draw();
+})();
+</script>
 </body>
 </html>
