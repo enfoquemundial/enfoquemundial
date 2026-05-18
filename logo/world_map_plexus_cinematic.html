@@ -1,0 +1,234 @@
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020c1a}
+#wrap{width:100%;position:relative;overflow:hidden;background:#020c1a}
+canvas{display:block;width:100%}
+</style>
+<div id="wrap">
+<canvas id="c"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+(async()=>{
+const wrap=document.getElementById('wrap');
+const canvas=document.getElementById('c');
+const W=Math.max(wrap.clientWidth||800,600);
+const H=Math.round(W*0.56);
+canvas.width=W*2;canvas.height=H*2;
+canvas.style.width=W+'px';canvas.style.height=H+'px';
+wrap.style.height=H+'px';
+const ctx=canvas.getContext('2d');
+ctx.scale(2,2);
+
+const proj=d3.geoNaturalEarth1().scale(W/6.1).translate([W/2,H/2]);
+const path=d3.geoPath(proj,ctx);
+
+let world;
+try{
+  const r=await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+  world=await r.json();
+}catch(e){world=null;}
+
+const BG='#020c1a';
+const LAND='#0a1f3d';
+const BORDER='#0e2d55';
+const OCEAN='#030e1e';
+
+const cities=[
+  {n:'New York',c:[-74,40.7]},{n:'London',c:[-0.1,51.5]},{n:'Tokyo',c:[139.7,35.7]},
+  {n:'Shanghai',c:[121.5,31.2]},{n:'Singapore',c:[103.8,1.3]},{n:'Dubai',c:[55.3,25.2]},
+  {n:'São Paulo',c:[-46.6,-23.5]},{n:'Lagos',c:[3.4,6.5]},{n:'Sydney',c:[151.2,-33.9]},
+  {n:'Mumbai',c:[72.8,19]},{n:'Moscow',c:[37.6,55.8]},{n:'Paris',c:[2.3,48.9]},
+  {n:'Frankfurt',c:[8.7,50.1]},{n:'Seoul',c:[126.9,37.6]},{n:'Chicago',c:[-87.6,41.9]},
+  {n:'Los Angeles',c:[-118.2,34]},{n:'Toronto',c:[-79.4,43.7]},{n:'Cairo',c:[31.2,30]},
+  {n:'Johannesburg',c:[28,-26.2]},{n:'Jakarta',c:[106.8,-6.2]},{n:'Beijing',c:[116.4,39.9]},
+  {n:'Mexico City',c:[-99.1,19.4]},{n:'Buenos Aires',c:[-58.4,-34.6]},{n:'Nairobi',c:[36.8,-1.3]},
+  {n:'Hong Kong',c:[114.2,22.3]},{n:'Taipei',c:[121.5,25]},{n:'Kuala Lumpur',c:[101.7,3.1]},
+  {n:'Bangkok',c:[100.5,13.8]},{n:'Amsterdam',c:[4.9,52.4]},{n:'Stockholm',c:[18.1,59.3]},
+  {n:'Zurich',c:[8.5,47.4]},{n:'Madrid',c:[-3.7,40.4]},{n:'Milan',c:[9.2,45.5]},
+  {n:'Istanbul',c:[29,41]},{n:'Karachi',c:[67.1,24.9]},{n:'Dhaka',c:[90.4,23.8]},
+  {n:'Manila',c:[120.9,14.6]},{n:'Lima',c:[-77,-12]},{n:'Bogota',c:[-74.1,4.7]},
+  {n:'Santiago',c:[-70.7,-33.5]},{n:'Casablanca',c:[-7.6,33.6]},{n:'Riyadh',c:[46.7,24.7]},
+  {n:'Tel Aviv',c:[34.8,32.1]},{n:'Vienna',c:[16.4,48.2]},{n:'Warsaw',c:[21,52.2]},
+  {n:'Osaka',c:[135.5,34.7]},{n:'Cape Town',c:[18.4,-33.9]},{n:'Vancouver',c:[-123.1,49.3]},
+  {n:'Miami',c:[-80.2,25.8]},{n:'Atlanta',c:[-84.4,33.7]}
+];
+
+const pts=cities.map(c=>{
+  const p=proj(c.c);
+  const isMajor=['New York','London','Tokyo','Shanghai','Singapore','Dubai','São Paulo','Sydney','Beijing','Moscow'].includes(c.n);
+  const isRed=['Beijing','Moscow','Lagos','Cairo','Jakarta','Karachi'].includes(c.n);
+  return{x:p[0],y:p[1],name:c.n,major:isMajor,red:isRed,
+    pulse:Math.random()*Math.PI*2,
+    pulseSpeed:0.02+Math.random()*0.02};
+});
+
+const extraPts=[];
+for(let i=0;i<180;i++){
+  const lon=(Math.random()-0.5)*340;
+  const lat=(Math.random()-0.5)*160;
+  const p=proj([lon,lat]);
+  if(p&&p[0]>0&&p[0]<W&&p[1]>0&&p[1]<H){
+    extraPts.push({x:p[0],y:p[1],minor:true,pulse:Math.random()*Math.PI*2,pulseSpeed:0.015+Math.random()*0.025});
+  }
+}
+const allPts=[...pts,...extraPts];
+
+const maxDist=W*0.18;
+const connections=[];
+for(let i=0;i<allPts.length;i++){
+  for(let j=i+1;j<allPts.length;j++){
+    const dx=allPts[i].x-allPts[j].x,dy=allPts[i].y-allPts[j].y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    if(d<maxDist){
+      const strong=(!allPts[i].minor&&!allPts[j].minor);
+      connections.push({a:i,b:j,d,strong});
+    }
+  }
+}
+
+let frame=0;
+function drawFrame(){
+  frame++;
+  ctx.clearRect(0,0,W,H);
+
+  const bgGrad=ctx.createRadialGradient(W/2,H*0.45,0,W/2,H*0.45,W*0.65);
+  bgGrad.addColorStop(0,'#071426');
+  bgGrad.addColorStop(0.5,'#040e1e');
+  bgGrad.addColorStop(1,'#020810');
+  ctx.fillStyle=bgGrad;
+  ctx.fillRect(0,0,W,H);
+
+  if(world){
+    const land=topojson.feature(world,world.objects.countries);
+    const borders=topojson.mesh(world,world.objects.countries,(a,b)=>a!==b);
+    
+    ctx.beginPath();
+    path(land);
+    ctx.fillStyle='#071d3a';
+    ctx.fill();
+    
+    ctx.beginPath();
+    path(land);
+    ctx.strokeStyle='#0d3060';
+    ctx.lineWidth=0.4;
+    ctx.stroke();
+
+    ctx.beginPath();
+    path(borders);
+    ctx.strokeStyle='#0a2448';
+    ctx.lineWidth=0.3;
+    ctx.stroke();
+
+    ctx.beginPath();
+    path({type:'Sphere'});
+    ctx.strokeStyle='#0a1e38';
+    ctx.lineWidth=0.5;
+    ctx.stroke();
+
+    const grat=d3.geoGraticule()();
+    ctx.beginPath();
+    path(grat);
+    ctx.strokeStyle='#0a1e35';
+    ctx.lineWidth=0.2;
+    ctx.globalAlpha=0.4;
+    ctx.stroke();
+    ctx.globalAlpha=1;
+  }
+
+  const t=frame/60;
+  for(const cn of connections){
+    const a=allPts[cn.a],b=allPts[cn.b];
+    const alpha=(1-(cn.d/maxDist));
+    const baseAlpha=cn.strong?alpha*0.55:alpha*0.2;
+    const anim=0.7+0.3*Math.sin(t*0.8+cn.a*0.3);
+    const finalAlpha=baseAlpha*anim;
+    if(finalAlpha<0.04)continue;
+
+    const isRedConn=(a.red||b.red);
+    let col;
+    if(isRedConn&&Math.random()<0.002){
+      col=`rgba(220,60,60,${finalAlpha})`;
+    } else if(isRedConn&&(a.red&&b.red)){
+      col=`rgba(200,50,50,${finalAlpha})`;
+    } else {
+      col=`rgba(30,120,255,${finalAlpha})`;
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(a.x,a.y);
+    ctx.lineTo(b.x,b.y);
+    ctx.strokeStyle=col;
+    ctx.lineWidth=cn.strong?0.8:0.4;
+    ctx.stroke();
+  }
+
+  for(const p of allPts){
+    p.pulse+=p.pulseSpeed;
+    const pv=0.6+0.4*Math.sin(p.pulse);
+
+    if(p.minor){
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,1.5,0,Math.PI*2);
+      ctx.fillStyle=`rgba(50,140,255,${0.4*pv})`;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,0.7,0,Math.PI*2);
+      ctx.fillStyle=`rgba(140,210,255,${0.7*pv})`;
+      ctx.fill();
+      continue;
+    }
+
+    const isRed=p.red;
+    const r=p.major?6:3.5;
+    const cr=p.major?12:7;
+    const cc=p.major?22:12;
+
+    const grad=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,cc);
+    if(isRed){
+      grad.addColorStop(0,`rgba(255,80,80,${0.3*pv})`);
+      grad.addColorStop(0.5,`rgba(200,30,30,${0.15*pv})`);
+      grad.addColorStop(1,'rgba(150,0,0,0)');
+    } else {
+      grad.addColorStop(0,`rgba(50,160,255,${0.35*pv})`);
+      grad.addColorStop(0.5,`rgba(20,100,255,${0.18*pv})`);
+      grad.addColorStop(1,'rgba(0,50,200,0)');
+    }
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,cc,0,Math.PI*2);
+    ctx.fillStyle=grad;
+    ctx.fill();
+
+    if(p.major){
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,cr,0,Math.PI*2);
+      ctx.strokeStyle=isRed?`rgba(255,100,100,${0.25*pv})`:`rgba(60,160,255,${0.25*pv})`;
+      ctx.lineWidth=0.8;
+      ctx.stroke();
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,r,0,Math.PI*2);
+    ctx.fillStyle=isRed?`rgba(255,120,120,${0.85*pv})`:`rgba(80,180,255,${0.85*pv})`;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,r*0.45,0,Math.PI*2);
+    ctx.fillStyle=isRed?`rgba(255,220,220,${0.95*pv})`:`rgba(210,240,255,${0.95*pv})`;
+    ctx.fill();
+  }
+
+  const vign=ctx.createRadialGradient(W/2,H/2,H*0.2,W/2,H/2,W*0.7);
+  vign.addColorStop(0,'rgba(0,0,0,0)');
+  vign.addColorStop(0.6,'rgba(2,8,20,0.15)');
+  vign.addColorStop(1,'rgba(2,6,16,0.75)');
+  ctx.fillStyle=vign;
+  ctx.fillRect(0,0,W,H);
+
+  requestAnimationFrame(drawFrame);
+}
+drawFrame();
+})();
+</script>

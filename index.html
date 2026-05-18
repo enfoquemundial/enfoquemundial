@@ -3,91 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración</title>
+    <title>Enfoque Mundial | Periodismo Global</title>
+    <meta name="description" content="Enfoque Mundial: noticias internacionales, análisis político, economía y más. Periodismo verificado con perspectiva global en español.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Enfoque Mundial | Periodismo Global">
+    <meta property="og:description" content="Noticias internacionales, análisis y cobertura global en español.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://enfoquemundial.com/">
+    <link rel="canonical" href="https://enfoquemundial.com/">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag("js", new Date());
+        gtag("config", "G-JGGDQ7PN0E");
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .hidden { display: none !important; }
         body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        /* TAMAÑO MODERADO: 80px */
+        .logo-nav img { height: 80px; width: auto; transition: transform 0.3s ease; }
     </style>
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-black text-white p-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+<body class="bg-white text-gray-900">
+    <div class="h-1 bg-black"></div>
+
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <!-- Grid de 3 columnas para control total de posición -->
+        <div class="max-w-7xl mx-auto px-4 h-28 grid grid-cols-3 items-center">
+
+            <!-- IZQUIERDA: LOGO -->
+            <div class="flex justify-start">
+                <div class="logo-nav cursor-pointer" onclick="location.href='index.html'">
+                    <img src="logo/logo vectorizado.svg" alt="Enfoque Mundial">
+                </div>
             </div>
-            <span class="font-bold uppercase tracking-tighter">Admin Panel</span>
-        </div>
-        <div class="flex gap-4 items-center">
-            <button onclick="showSection('dashboard')" class="text-[10px] font-bold uppercase hover:text-blue-400">Lista</button>
-            <button onclick="showSection('create')" class="text-[10px] font-bold uppercase hover:text-blue-400">Nueva Noticia</button>
-            <button onclick="resetGitHubConfig()" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition-all border border-gray-700" title="Configurar GitHub">
-                <i data-lucide="settings" class="w-4 h-4 text-gray-300"></i>
-            </button>
-            <button onclick="logout()" class="text-[10px] font-bold uppercase text-red-500">Salir</button>
+
+            <!-- CENTRO: BUSCADOR -->
+            <div class="flex justify-center">
+                <div class="relative group w-full max-w-xs">
+                    <input type="text" id="searchInput" onkeyup="searchNews()" placeholder="Buscar..." class="bg-gray-50 rounded-full py-2 px-10 text-xs w-full transition-all outline-none border border-transparent focus:border-black text-center focus:bg-white shadow-sm">
+                    <i data-lucide="search" class="absolute left-4 top-2.5 w-4 h-4 text-gray-400 group-focus-within:text-black"></i>
+                </div>
+            </div>
+
+            <!-- DERECHA: INFO Y PERFIL -->
+            <div class="flex justify-end items-center gap-6">
+                <span id="current-date" class="hidden lg:block text-[10px] font-bold uppercase tracking-widest text-gray-400 text-right"></span>
+                <button onclick="location.href='admin/login/index.html'" class="text-gray-400 hover:text-black transition-colors">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <main class="p-4 max-w-4xl mx-auto">
-        <!-- LISTADO -->
-        <div id="section-dashboard">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold">Noticias</h2>
-                <button onclick="showSection('create')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-200">+ Crear</button>
+    <main class="max-w-7xl mx-auto px-4 py-10">
+        <section id="hero-section" class="mb-16"></section>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-8">
+                <h2 class="text-3xl font-serif font-bold mb-10">Lo Último</h2>
+                <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+                <div id="pagination" class="mt-16 flex justify-center gap-2 pb-20"></div>
             </div>
-            <div id="admin-news-list" class="space-y-3"></div>
-        </div>
+            <aside class="lg:col-span-4">
+                <div class="bg-gray-50 p-8 rounded-[2rem] sticky top-32">
+                    <h3 class="text-lg font-bold mb-8 flex items-center gap-3">
+                        <i data-lucide="trending-up" class="text-blue-600 w-5 h-5"></i> Tendencias
+                    </h3>
+                    <div id="trending-container" class="space-y-6 mb-10"></div>
 
-        <!-- FORMULARIO -->
-        <div id="section-create" class="hidden">
-            <div class="bg-white p-6 rounded-3xl shadow-sm border">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold">Redactar Noticia</h2>
-                    <button onclick="showSection('dashboard')" class="text-gray-400"><i data-lucide="x" class="w-6 h-6"></i></button>
+                    <!-- Native Banner Adsterra -->
+                    <div class="mt-6">
+                        <script async="async" data-cfasync="false" src="https://pl29481188.effectivecpmnetwork.com/091426877b50d797e2e1289ea439ffb0/invoke.js"></script>
+                        <div id="container-091426877b50d797e2e1289ea439ffb0"></div>
+                    </div>
+
+                    <!-- Banner 300x250 Adsterra -->
+                    <div class="mt-10 pt-10 border-t border-gray-200">
+                        <span class="text-gray-300 text-[10px] font-bold uppercase block text-center mb-4">Publicidad</span>
+                        <div id="adsense-sidebar" class="min-h-[250px] bg-white rounded-xl flex items-center justify-center">
+                            <script>
+                              atOptions = {
+                                'key' : 'ec550e6285b5aaf31bf9e3521ee96031',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
+                              };
+                            </script>
+                            <script src="https://www.highperformanceformat.com/ec550e6285b5aaf31bf9e3521ee96031/invoke.js"></script>
+                        </div>
+                    </div>
                 </div>
-
-                <form id="news-form" class="space-y-4">
-                    <input type="hidden" id="edit-id">
-                    <input type="text" id="title" placeholder="Título" class="w-full p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500" required>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex gap-2">
-                            <select id="category" class="flex-1 p-3 bg-gray-50 rounded-xl outline-none"></select>
-                            <button type="button" onclick="addNewCategory()" class="p-3 bg-gray-100 rounded-xl text-gray-600 hover:bg-gray-200"><i data-lucide="plus" class="w-4 h-4"></i></button>
-                        </div>
-                        <input type="text" id="author" placeholder="Autor" class="p-3 bg-gray-50 rounded-xl outline-none">
-                    </div>
-
-                    <textarea id="content" placeholder="Contenido..." rows="8" class="w-full p-4 bg-gray-50 rounded-2xl outline-none" required></textarea>
-
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-400 uppercase ml-2">Imágenes</label>
-                        <div id="image-preview-container" class="flex gap-2 overflow-x-auto py-2"></div>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-200 rounded-2xl cursor-pointer hover:bg-blue-50 hover:border-blue-200 transition-all">
-                                <input type="file" class="hidden" accept="image/*" multiple onchange="handleFileUpload(this)">
-                                <i data-lucide="image" class="w-6 h-6 text-blue-500 mb-1"></i>
-                                <span class="text-blue-600 font-bold text-xs">Subir fotos</span>
-                            </label>
-
-                            <div class="p-3 bg-gray-50 rounded-2xl flex flex-col justify-center">
-                                <input type="text" id="image-url" placeholder="URL externa..." class="w-full p-2 bg-white rounded-lg border-none outline-none mb-2 text-xs">
-                                <button type="button" onclick="addImage()" class="w-full bg-black text-white py-2 rounded-lg text-[10px] font-bold">Añadir URL</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" id="submit-btn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:bg-blue-700 transition-colors">Publicar Noticia</button>
-                </form>
-            </div>
+            </aside>
         </div>
     </main>
 
-    <script src="../js/admin.js"></script>
+    <footer class="bg-gray-900 text-gray-300 mt-20">
+        <div class="max-w-7xl mx-auto px-4 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+                <div>
+                    <img src="logo/logo vectorizado.svg" class="h-10 mb-4 brightness-0 invert opacity-80" alt="Enfoque Mundial">
+                    <p class="text-sm text-gray-400 leading-relaxed">Periodismo global con perspectiva. Información verificada, análisis profundo y cobertura internacional.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">El Medio</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="sobre-nosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+                        <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacidad.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                        <li><a href="terminos.html" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
+                <p>© 2025 Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popunder Adsterra -->
+    <script src="https://pl29481189.effectivecpmnetwork.com/39/9a/bc/399abc4305b755cd12005e839ae4ca35.js"></script>
+    <script src="js/app.js"></script>
     <script>
         lucide.createIcons();
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+
+        function searchNews() {
+            const q = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!q) { renderHome(1); return; }
+            fetchNews().then(allNews => {
+                const filtered = allNews.filter(n =>
+                    n.title.toLowerCase().includes(q) ||
+                    (n.content && n.content.toLowerCase().includes(q)) ||
+                    (n.category && n.category.toLowerCase().includes(q))
+                );
+                const container = document.getElementById('news-container');
+                const hero = document.getElementById('hero-section');
+                const paginationEl = document.getElementById('pagination');
+                if (hero) hero.innerHTML = '';
+                if (paginationEl) paginationEl.innerHTML = '';
+                container.innerHTML = filtered.length
+                    ? filtered.map(n => `<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onclick="location.href='article.html?id=${n.id}'"><img src="${n.images[0]}" class="w-full h-44 object-cover" alt="${n.title}" loading="lazy"><div class="p-4"><span class="text-blue-600 font-bold text-[9px] uppercase">${n.category}</span><h3 class="font-bold my-2 line-clamp-2 text-gray-800">${n.title}</h3><p class="text-gray-400 text-[10px]">${new Date(n.date).toLocaleDateString('es-ES')}</p></div></article>`).join('')
+                    : '<p class="text-gray-400 col-span-2 py-10 text-center">No se encontraron resultados.</p>';
+            });
+        }
+
+        window.onload = () => renderHome();
     </script>
 </body>
 </html>

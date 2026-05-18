@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hidden { display: none !important; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-black text-white p-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="font-bold uppercase tracking-tighter">Admin Panel</span>
+        </div>
+        <div class="flex gap-4 items-center">
+            <button onclick="showSection('dashboard')" class="text-[10px] font-bold uppercase hover:text-blue-400">Lista</button>
+            <button onclick="showSection('create')" class="text-[10px] font-bold uppercase hover:text-blue-400">Nueva Noticia</button>
+            <button onclick="resetGitHubConfig()" class="bg-gray-800 p-2 rounded-lg hover:bg-gray-700 transition-all border border-gray-700" title="Configurar GitHub">
+                <i data-lucide="settings" class="w-4 h-4 text-gray-300"></i>
+            </button>
+            <button onclick="logout()" class="text-[10px] font-bold uppercase text-red-500">Salir</button>
+        </div>
+    </nav>
+
+    <main class="p-4 max-w-4xl mx-auto">
+        <!-- LISTADO -->
+        <div id="section-dashboard">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Noticias</h2>
+                <button onclick="showSection('create')" class="bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg shadow-blue-200">+ Crear</button>
+            </div>
+            <div id="admin-news-list" class="space-y-3"></div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div id="section-create" class="hidden">
+            <div class="bg-white p-6 rounded-3xl shadow-sm border">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Redactar Noticia</h2>
+                    <button onclick="showSection('dashboard')" class="text-gray-400"><i data-lucide="x" class="w-6 h-6"></i></button>
+                </div>
+
+                <form id="news-form" class="space-y-4">
+                    <input type="hidden" id="edit-id">
+                    <input type="text" id="title" placeholder="Título" class="w-full p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500" required>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex gap-2">
+                            <select id="category" class="flex-1 p-3 bg-gray-50 rounded-xl outline-none"></select>
+                            <button type="button" onclick="addNewCategory()" class="p-3 bg-gray-100 rounded-xl text-gray-600 hover:bg-gray-200"><i data-lucide="plus" class="w-4 h-4"></i></button>
+                        </div>
+                        <input type="text" id="author" placeholder="Autor" class="p-3 bg-gray-50 rounded-xl outline-none">
+                    </div>
+
+                    <textarea id="content" placeholder="Contenido..." rows="8" class="w-full p-4 bg-gray-50 rounded-2xl outline-none" required></textarea>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-400 uppercase ml-2">Imágenes</label>
+                        <div id="image-preview-container" class="flex gap-2 overflow-x-auto py-2"></div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-200 rounded-2xl cursor-pointer hover:bg-blue-50 hover:border-blue-200 transition-all">
+                                <input type="file" class="hidden" accept="image/*" multiple onchange="handleFileUpload(this)">
+                                <i data-lucide="image" class="w-6 h-6 text-blue-500 mb-1"></i>
+                                <span class="text-blue-600 font-bold text-xs">Subir fotos</span>
+                            </label>
+
+                            <div class="p-3 bg-gray-50 rounded-2xl flex flex-col justify-center">
+                                <input type="text" id="image-url" placeholder="URL externa..." class="w-full p-2 bg-white rounded-lg border-none outline-none mb-2 text-xs">
+                                <button type="button" onclick="addImage()" class="w-full bg-black text-white py-2 rounded-lg text-[10px] font-bold">Añadir URL</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:bg-blue-700 transition-colors">Publicar Noticia</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
