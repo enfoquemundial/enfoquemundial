@@ -177,7 +177,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 const ok = await syncNewsToGitHub(updatedNews, config);
                 if (ok) {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedNews));
-                    alert("✅ ¡PUBLICADO EN GITHUB CORRECTAMENTE!");
+                    await syncSitemapToGitHub(updatedNews, config);
+                    const articleUrl = `https://enfoquemundial.com/article.html?id=${newsData.id}`;
+                    alert(`✅ ¡PUBLICADO CORRECTAMENTE!\n\nEnlace de la noticia:\n${articleUrl}\n\n(También puedes copiarlo después desde el botón "Copiar enlace" en la lista)`);
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(articleUrl).catch(() => {});
+                    }
                     location.reload();
                 }
             } catch (err) {
@@ -205,6 +210,64 @@ async function syncNewsToGitHub(newsArray, config) {
     return response.ok;
 }
 
+// Regenera sitemap.xml con TODAS las páginas fijas + cada noticia individual.
+// Se ejecuta automáticamente cada vez que se publica o borra una noticia.
+async function syncSitemapToGitHub(newsArray, config) {
+    const SITE_URL = 'https://enfoquemundial.com';
+    const staticPages = [
+        { loc: `${SITE_URL}/`, changefreq: 'daily', priority: '1.0' },
+        { loc: `${SITE_URL}/sobre-nosotros.html`, changefreq: 'monthly', priority: '0.8' },
+        { loc: `${SITE_URL}/contacto.html`, changefreq: 'monthly', priority: '0.8' },
+        { loc: `${SITE_URL}/privacidad.html`, changefreq: 'yearly', priority: '0.5' },
+        { loc: `${SITE_URL}/terminos.html`, changefreq: 'yearly', priority: '0.5' },
+    ];
+
+    const escapeXml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    const staticXml = staticPages.map(p => `
+  <url>
+    <loc>${p.loc}</loc>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`).join('');
+
+    const articlesXml = newsArray.map(n => {
+        const lastmod = n.date ? new Date(n.date).toISOString().split('T')[0] : '';
+        return `
+  <url>
+    <loc>${escapeXml(`${SITE_URL}/article.html?id=${n.id}`)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+    }).join('');
+
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticXml}${articlesXml}
+</urlset>
+`;
+
+    const sitemapPath = 'sitemap.xml';
+    const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${sitemapPath}`;
+    let sha = "";
+    try {
+        const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
+        if (res.ok) { const data = await res.json(); sha = data.sha; }
+    } catch (e) {}
+    const content = btoa(unescape(encodeURIComponent(sitemapXml)));
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: "Update sitemap.xml", content: content, sha: sha })
+        });
+        return response.ok;
+    } catch (e) {
+        console.error('Error actualizando sitemap.xml:', e);
+        return false;
+    }
+}
+
 function renderImagePreview() {
     const container = document.getElementById('image-preview-container');
     if (container) {
@@ -221,6 +284,23 @@ function addImage() {
     const url = document.getElementById('image-url').value.trim();
     if (url) { currentImages.push(url); document.getElementById('image-url').value = ''; renderImagePreview(); }
 }
+function copyArticleLink(id) {
+    const SITE_URL = 'https://enfoquemundial.com';
+    const url = `${SITE_URL}/article.html?id=${id}`;
+    const btn = document.getElementById(`copy-btn-${id}`);
+    const showCopied = () => {
+        if (!btn) return;
+        const original = btn.innerText;
+        btn.innerText = '¡Copiado!';
+        setTimeout(() => { btn.innerText = original; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(showCopied).catch(() => prompt('Copia el enlace:', url));
+    } else {
+        prompt('Copia el enlace:', url);
+    }
+}
+
 function renderAdminList() {
     const news = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     const container = document.getElementById('admin-news-list');
@@ -236,6 +316,7 @@ function renderAdminList() {
                 <div><h4 class="font-bold text-sm text-gray-800 line-clamp-1">${n.title}</h4><span class="text-[9px] bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full uppercase font-bold">${n.category}</span></div>
             </div>
             <div class="flex gap-2">
+                <button onclick="copyArticleLink(${n.id})" id="copy-btn-${n.id}" class="p-2 text-green-600 bg-green-50 rounded-lg text-xs font-bold">Copiar enlace</button>
                 <button onclick="editNews(${n.id})" class="p-2 text-blue-500 bg-blue-50 rounded-lg text-xs">Editar</button>
                 <button onclick="deleteNews(${n.id})" class="p-2 text-red-500 bg-red-50 rounded-lg text-xs">Borrar</button>
             </div>
@@ -261,7 +342,9 @@ function deleteNews(id) {
         const updated = (JSON.parse(localStorage.getItem(STORAGE_KEY)) || []).filter(n => n.id != id);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
         const config = getGitHubConfig();
-        if (config) syncNewsToGitHub(updated, config);
+        if (config) {
+            syncNewsToGitHub(updated, config).then(() => syncSitemapToGitHub(updated, config));
+        }
         renderAdminList();
     }
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="logo/logo%20vectorizado.svg">
     <title>Política de Privacidad | Enfoque Mundial</title>
     <meta name="description" content="Política de privacidad de Enfoque Mundial. Conoce cómo recopilamos, usamos y protegemos tu información personal.">
     <meta name="robots" content="index, follow">
@@ -15,7 +16,7 @@
         gtag("config", "G-JGGDQ7PN0E");
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -127,11 +128,12 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
-                <p>© 2025 Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
+                <p>© <span id="copyright-year">2026</span> Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
             </div>
         </div>
     </footer>
 
     <script>lucide.createIcons();</script>
+<script>document.getElementById("copyright-year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

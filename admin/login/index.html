@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Login</title>
+<link rel="icon" type="image/svg+xml" href="../../logo/logo%20vectorizado.svg">
+    <title>Login</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#020c1a;font-family:'Segoe UI',system-ui,sans-serif}
@@ -286,13 +287,31 @@ function toggleEye(){
 }
 
 // Lógica de acceso
+// Nota de seguridad: al ser un sitio 100% estático (GitHub Pages, sin backend),
+// no existe forma de tener autenticación verdaderamente segura en el navegador —
+// cualquier verificación aquí es, en el mejor de los casos, una barrera básica.
+// Por eso se compara un HASH (SHA-256) y no el correo/contraseña en texto plano,
+// para que al menos no sean legibles directamente en el código fuente.
+// Aun así, un atacante decidido podría intentar romper el hash o capturar lo que
+// se escribe en el formulario. Para publicar de verdad sin este riesgo, lo ideal
+// a futuro es mover el login a un servicio con backend real (o proteger /admin/
+// con autenticación a nivel de hosting, ej. Cloudflare Access).
+const ADMIN_EMAIL_HASH = '592d5fdb5e012b11f9b50af369cc987dc631893fcd840c2afb5a7b1782abd19a';
+const ADMIN_PASS_HASH = '4d95f6eeeb8950b514a94e357f1f32caa386b9c1b6dc8f7a7c058a75334771db';
+
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.querySelector('.btn-primary');
   const errorBox = document.getElementById('login-error');
-  function doLogin() {
+  async function doLogin() {
       const u = document.querySelector('input[type="email"]').value.trim();
       const p = document.getElementById('pwd').value;
-      if (u === '29quezada@gmail.com' && p === 'E40211233768q') {
+      const [uHash, pHash] = await Promise.all([sha256(u), sha256(p)]);
+      if (uHash === ADMIN_EMAIL_HASH && pHash === ADMIN_PASS_HASH) {
         errorBox.style.display = 'none';
         localStorage.setItem('enfoque_mundial_logged', 'true');
         window.location.href = '../dashboard.html';

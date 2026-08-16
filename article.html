@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticia | Enfoque Mundial</title>
-    <meta name="description" content="Lee las últimas noticias internacionales en Enfoque Mundial. Periodismo verificado con perspectiva global.">
+    <link rel="icon" type="image/svg+xml" href="logo/logo%20vectorizado.svg">
+    <title id="meta-title">Noticia | Enfoque Mundial</title>
+    <meta id="meta-description" name="description" content="Lee las últimas noticias internacionales en Enfoque Mundial. Periodismo verificado con perspectiva global.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://enfoquemundial.com/article.html">
+    <link id="meta-canonical" rel="canonical" href="https://enfoquemundial.com/article.html">
+    <meta id="meta-og-title" property="og:title" content="Enfoque Mundial">
+    <meta id="meta-og-description" property="og:description" content="Noticias internacionales, análisis y cobertura global en español.">
+    <meta id="meta-og-type" property="og:type" content="article">
+    <meta id="meta-og-url" property="og:url" content="https://enfoquemundial.com/article.html">
+    <meta id="meta-og-image" property="og:image" content="">
+    <script id="ld-json" type="application/ld+json">{}</script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
     <script>
@@ -16,7 +23,7 @@
         gtag("config", "G-JGGDQ7PN0E");
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -57,7 +64,10 @@
             <!-- Cargando... -->
         </div>
 
-        <!-- Banner 728x90 Adsterra -->
+        <!-- Banner 728x90 Adsterra — DESACTIVADO antes de aplicar a AdSense.
+             Google penaliza/rechaza sitios con otras redes de anuncios activas,
+             sobre todo con popunders. Reactivar solo si decides no usar AdSense
+             o después de tener AdSense aprobado y funcionando.
         <div class="my-10 rounded-xl flex flex-col items-center justify-center overflow-hidden">
             <span class="text-gray-300 text-[10px] font-bold uppercase mb-2">Publicidad</span>
             <script>
@@ -71,6 +81,7 @@
             </script>
             <script src="https://www.highperformanceformat.com/4b3274c4b77ea36bbe9c724f85ac3bff/invoke.js"></script>
         </div>
+        -->
     </article>
 
     <footer class="bg-gray-900 text-gray-300 mt-20">
@@ -97,69 +108,23 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
-                <p>© 2025 Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
+                <p>© <span id="copyright-year">2026</span> Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Popunder Adsterra -->
+    <!-- Popunder Adsterra — DESACTIVADO antes de aplicar a AdSense (ver nota arriba).
     <script src="https://pl29481189.effectivecpmnetwork.com/39/9a/bc/399abc4305b755cd12005e839ae4ca35.js"></script>
+    -->
 
+    <script src="js/article.js"></script>
     <script>
-        const STORAGE_KEY = 'enfoque_mundial_news';
-        const urlParams = new URLSearchParams(window.location.search);
-        const newsId = parseInt(urlParams.get('id'));
-
-        function loadArticle() {
-            let allNews = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-            const news = allNews.find(n => n.id === newsId);
-
-            if (!news) {
-                document.getElementById('article-content').innerHTML = "<h1>Noticia no encontrada</h1>";
-                return;
-            }
-
-            // Incrementar vistas
-            news.views = (news.views || 0) + 1;
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(allNews));
-
-            const container = document.getElementById('article-content');
-            container.innerHTML = `
-                <div class="mb-8">
-                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">${news.category}</span>
-                    <h1 class="text-3xl md:text-5xl font-serif font-bold mt-4 mb-6 leading-tight">${news.title}</h1>
-                    <div class="flex items-center gap-4 text-gray-500 text-sm border-y border-gray-100 py-4">
-                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"><i data-lucide="user" class="w-5 h-5"></i></div>
-                        <div>
-                            <p class="font-bold text-black">${news.author}</p>
-                            <p class="text-xs text-gray-400">${new Date(news.date).toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' })}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Galería de Imágenes -->
-                <div class="mb-10 space-y-4">
-                    ${news.images.map(img => `
-                        <div class="rounded-2xl overflow-hidden shadow-lg">
-                            <img src="${img}" class="w-full object-cover">
-                        </div>
-                    `).join('')}
-                </div>
-
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">
-                    ${news.content}
-                </div>
-            `;
-            lucide.createIcons();
-        }
-
         function share() {
             if (navigator.share) {
                 navigator.share({ title: document.title, url: window.location.href });
             }
         }
-
-        window.onload = loadArticle;
     </script>
+<script>document.getElementById("copyright-year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
