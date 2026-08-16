@@ -68,12 +68,19 @@ def fetch_real_news():
     r = requests.get(url, params=params, timeout=20)
     r.raise_for_status()
     articles = r.json().get("articles", [])
-    # Solo noticias con suficiente info real para trabajar
-    return [a for a in articles if a.get("title") and a.get("description")]
+    # Solo noticias con suficiente info real y sustancial para escribir un artículo decente
+    # (evita basar el artículo en una fuente tan corta que la IA termine escribiendo puro relleno vago)
+    MIN_SOURCE_CHARS = 300
+    return [
+        a for a in articles
+        if a.get("title") and a.get("description")
+        and len(a.get("description", "") + a.get("content", "")) >= MIN_SOURCE_CHARS
+    ]
 
 
 # --- Generación con IA, anclada a hechos reales ---
-def generate_article(source, category):
+def generate_article(source):
+    categories_list = ", ".join(CATEGORIES)
     prompt = f"""Eres redactor del medio digital "Enfoque Mundial". Te doy información real de una noticia reciente; tu trabajo es escribir un artículo periodístico ORIGINAL en español, de 400 a 600 palabras, basado ÚNICAMENTE en estos hechos:
 
 Título original: {source.get('title')}
@@ -87,8 +94,12 @@ REGLAS ESTRICTAS (no negociables):
 - Tono periodístico neutral y profesional, en español de Latinoamérica.
 - No copies frases textuales del resumen original; redacta todo con tus propias palabras.
 
+Además:
+- Elige la categoría que MEJOR describe el tema real de esta noticia, solo entre estas opciones: {categories_list}
+- Genera una frase corta EN INGLÉS (2-4 palabras) que describa la escena general del tema, para buscar una foto de stock genérica y segura relacionada — NO uses nombres propios, lugares específicos, ni términos que puedan confundirse con armas, violencia o conflicto. Ejemplos válidos: "government meeting building", "stock market finance", "technology data center", "sports stadium crowd".
+
 Devuelve SOLO un objeto JSON válido, sin texto adicional, sin markdown, con este formato exacto:
-{{"title": "un titular propio, no el original", "content": "el cuerpo completo del artículo"}}
+{{"title": "un titular propio, no el original", "content": "el cuerpo completo del artículo", "category": "una de las categorías de la lista", "image_query": "frase corta en inglés para buscar la foto"}}
 """
     r = requests.post(
         "https://api.anthropic.com/v1/messages",
@@ -168,14 +179,20 @@ def main():
         sys.exit(0)
 
     source = random.choice(real_articles)
-    category = random.choice(CATEGORIES)
     print(f"Base real elegida: {source['title']}")
 
     print("Redactando artículo original con IA...")
-    generated = generate_article(source, category)
+    generated = generate_article(source)
+
+    # Validar que la categoría que devolvió la IA sea una de las permitidas;
+    # si no, usar "Mundo" como categoría segura por defecto en vez de una al azar.
+    category = generated.get("category", "").strip()
+    if category not in CATEGORIES:
+        print(f"Aviso: categoría '{category}' no reconocida, usando 'Mundo' por defecto.")
+        category = "Mundo"
 
     print("Buscando imagen libre de derechos...")
-    image_query = generated["title"].split(":")[0][:60]
+    image_query = generated.get("image_query", "").strip() or category
     image_url = fetch_image(image_query) or "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200"
 
     news_text, news_sha = gh_get_file(NEWS_PATH)
