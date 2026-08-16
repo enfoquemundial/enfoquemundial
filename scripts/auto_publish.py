@@ -35,10 +35,10 @@ SITE_URL = "https://enfoquemundial.com"
 CATEGORIES = ["Mundo", "Politica", "Politica internacional", "Tecnología", "Finanzas", "Deportes", "Cultura"]
 AUTHORS = ["Esfrailin Quezada", "Irelsa Nuñez", "Redacción"]
 
-GH_TOKEN = os.environ["GH_TOKEN"]
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-GNEWS_API_KEY = os.environ["GNEWS_API_KEY"]
-UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY", "")
+GH_TOKEN = os.environ["GH_TOKEN"].strip()
+ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"].strip()
+GNEWS_API_KEY = os.environ["GNEWS_API_KEY"].strip()
+UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY", "").strip()
 
 GH_HEADERS = {"Authorization": f"token {GH_TOKEN}"}
 
