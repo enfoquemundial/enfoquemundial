@@ -161,6 +161,7 @@ def main():
         "date": datetime.now(timezone.utc).isoformat(),
         "images": [image_url],
         "views": 0,
+        "source_name": source.get("source", {}).get("name", "").strip(),
     }
 
     print("Validando y generando páginas HTML reales (misma lógica que usa el panel)...")

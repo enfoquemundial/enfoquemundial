@@ -120,7 +120,7 @@ def head(title, description, canonical_url, og_type="website", og_image="", extr
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="{rel(canonical_url)}logo/logo%20vectorizado.svg">
+    <link rel="icon" type="image/svg+xml" href="{rel(canonical_url)}logo/favicon.svg">
     <title>{title}</title>
     <meta name="description" content="{description}">
     <meta name="robots" content="{robots}">
@@ -402,6 +402,9 @@ def generate_article_page(n, news):
         f'<div class="mb-10"><img src="{img}" alt="{title_esc}" class="w-full rounded-2xl shadow-lg" loading="lazy"></div>'
         for img in n.get("images", [])[:1]
     )
+    source_html = ""
+    if n.get("source_name", "").strip():
+        source_html = f'<p class="text-xs text-gray-400 mt-1">Basado en información de <span class="font-medium text-gray-500">{esc(n["source_name"])}</span></p>'
 
     body = f"""
 {nav(url, news)}
@@ -415,6 +418,7 @@ def generate_article_page(n, news):
             <div>
                 <a href="{auth_url}" class="font-bold text-black hover:underline">{esc(n['author'])}</a>
                 <p class="text-xs text-gray-400">Publicado: {fmt_date(n['date'])}</p>
+                {source_html}
             </div>
         </div>
         {hero_image_html}
