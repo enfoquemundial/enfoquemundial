@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../logo/logo%20vectorizado.svg">
+    <title>Tecnología | Enfoque Mundial</title>
+    <meta name="description" content="Últimas noticias de Tecnología en Enfoque Mundial. Periodismo verificado con perspectiva global.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Tecnología | Enfoque Mundial">
+    <meta property="og:description" content="Últimas noticias de Tecnología en Enfoque Mundial. Periodismo verificado con perspectiva global.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://enfoquemundial.com/tecnologia/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tecnología | Enfoque Mundial">
+    <meta name="twitter:description" content="Últimas noticias de Tecnología en Enfoque Mundial. Periodismo verificado con perspectiva global.">
+    <link rel="canonical" href="https://enfoquemundial.com/tecnologia/">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag("js", new Date());
+        gtag("config", "G-JGGDQ7PN0E");
+    </script>
+
+    <link rel="stylesheet" href="../css/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .logo-nav img { height: 80px; width: auto; }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+<div class="h-1 bg-black"></div>
+
+
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-28 grid grid-cols-3 items-center">
+        <div class="flex justify-start">
+            <div class="logo-nav cursor-pointer" onclick="location.href='../index.html'">
+                <img src="../logo/logo vectorizado.svg" alt="Enfoque Mundial">
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="relative group w-full max-w-xs">
+                <input type="text" id="searchInput" onkeyup="if(event.key==='Enter')searchNews()" placeholder="Buscar..." class="bg-gray-50 rounded-full py-2 px-10 text-xs w-full transition-all outline-none border border-transparent focus:border-black text-center focus:bg-white shadow-sm">
+                <i data-lucide="search" class="absolute left-4 top-2.5 w-4 h-4 text-gray-400 group-focus-within:text-black"></i>
+            </div>
+        </div>
+        <div class="flex justify-end items-center gap-6">
+            <span id="current-date" class="hidden lg:block text-[10px] font-bold uppercase tracking-widest text-gray-400 text-right"></span>
+            <button onclick="location.href='../admin/login/index.html'" class="text-gray-400 hover:text-black transition-colors">
+                <i data-lucide="user" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </div>
+    
+<div class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center gap-6 overflow-x-auto py-3 no-scrollbar">
+            <a href="https://enfoquemundial.com/cultura/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Cultura</a><a href="https://enfoquemundial.com/mundo/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Mundo</a><a href="https://enfoquemundial.com/politica/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Política</a><a href="https://enfoquemundial.com/finanzas/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Finanzas</a><a href="https://enfoquemundial.com/tecnologia/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Tecnología</a><a href="https://enfoquemundial.com/videojuegos/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Videojuegos</a><a href="https://enfoquemundial.com/politica-internacional/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Política Internacional</a><a href="https://enfoquemundial.com/deportes/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Deportes</a>
+        </div>
+    </div>
+</div>
+
+</nav>
+<style>.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
+
+<nav class="max-w-7xl mx-auto px-4 pt-6 text-xs text-gray-400"><a href="https://enfoquemundial.com/" class="hover:text-black">Inicio</a> <span class='mx-1 text-gray-300'>/</span> <span class="text-gray-800 font-medium">Tecnología</span></nav>
+<main class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-serif font-bold mb-10">Tecnología</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/america-latina-enfrenta-aumento-historico-de-ciberataques-contra-bancos-y-servicios-publicos-1778314110601/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314107626_ChatGPT_Image_9_may_2026%2C_01_08_13_p.m..png" class="w-full h-44 object-cover" alt="América Latina enfrenta aumento histórico de ciberataques contra bancos y servicios públicos" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">América Latina enfrenta aumento histórico de ciberataques contra bancos y servicios públicos</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/google-prepara-una-revolucion-en-android-y-la-inteligencia-artificial-para-2026-1778313757639/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313754904_ChatGPT_Image_May_9%2C_2026%2C_01_02_10_PM.png" class="w-full h-44 object-cover" alt="Google prepara una revolución en Android y la inteligencia artificial para 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Google prepara una revolución en Android y la inteligencia artificial para 2026</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-computacion-cuantica-se-acerca-a-su-primer-uso-comercial-real-en-2026-1778313719556/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313716996_ChatGPT_Image_May_9%2C_2026%2C_01_01_22_PM.png" class="w-full h-44 object-cover" alt="La computación cuántica se acerca a su primer uso comercial real en 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La computación cuántica se acerca a su primer uso comercial real en 2026</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-robotica-humanoide-avanza-hacia-su-primera-adopcion-industrial-a-gran-escala-1778313667550/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313661366_ChatGPT_Image_May_9%2C_2026%2C_01_00_48_PM.png" class="w-full h-44 object-cover" alt="La robótica humanoide avanza hacia su primera adopción industrial a gran escala" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La robótica humanoide avanza hacia su primera adopción industrial a gran escala</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/google-acelera-la-carrera-global-de-la-inteligencia-artificial-con-nuevas-herramientas-alianzas-militares-y-avances-en-android-1778313619206/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313612778_ChatGPT_Image_May_9%2C_2026%2C_01_00_01_PM.png" class="w-full h-44 object-cover" alt="Google acelera la carrera global de la inteligencia artificial con nuevas herramientas, alianzas militares y avances en Android" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Google acelera la carrera global de la inteligencia artificial con nuevas herramientas, alianzas militares y avances en Android</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-inteligencia-artificial-ya-crea-mas-de-un-tercio-de-los-nuevos-podcast-en-internet-1778313379010/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313363047_ChatGPT_Image_9_may_2026%2C_12_53_05_p.m..png" class="w-full h-44 object-cover" alt="La inteligencia artificial ya crea más de un tercio de los nuevos pódcast en internet" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La inteligencia artificial ya crea más de un tercio de los nuevos pódcast en internet</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/freepik-inicia-una-nueva-etapa-global-impulsada-por-inteligencia-artificial-y-transformacion-creativa-digital-1778141965053/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778141962045_freepik_image.png" class="w-full h-44 object-cover" alt="Freepik inicia una nueva etapa global impulsada por inteligencia artificial y transformación creativa digital" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Freepik inicia una nueva etapa global impulsada por inteligencia artificial y transformación creativa digital</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/nvidia-enfrenta-su-mayor-desafio-en-la-era-de-la-inteligencia-artificial-mientras-gigantes-tecnologicos-desarrollan-sus-propios-chips-1778141454481/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778141451375_nvidia.png" class="w-full h-44 object-cover" alt="NVIDIA enfrenta su mayor desafío en la era de la inteligencia artificial mientras gigantes tecnológicos desarrollan sus propios chips" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">NVIDIA enfrenta su mayor desafío en la era de la inteligencia artificial mientras gigantes tecnológicos desarrollan sus propios chips</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-revolucion-digital-en-america-latina-como-la-inteligencia-artificial-y-la-tecnologia-estan-cambiando-la-vida-de-millones-en-2026-1778141338897/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778141334512_tecnologia.png" class="w-full h-44 object-cover" alt="La revolución digital en América Latina: cómo la inteligencia artificial y la tecnología están cambiando la vida de millones en 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La revolución digital en América Latina: cómo la inteligencia artificial y la tecnología están cambiando la vida de millones en 2026</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/china-acelera-su-carrera-espacial-y-prepara-una-historica-mision-para-competir-con-estados-unidos-en-la-luna-1778140995684/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778140992011_luna_china.jpeg" class="w-full h-44 object-cover" alt="China acelera su carrera espacial y prepara una histórica misión para competir con Estados Unidos en la Luna" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">China acelera su carrera espacial y prepara una histórica misión para competir con Estados Unidos en la Luna</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/amsterdam-declara-guerra-tecnologica-a-las-big-tech-y-busca-independizarse-de-google-amazon-y-microsoft-1778140692566/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778140724743_guerraa.png" class="w-full h-44 object-cover" alt="Ámsterdam declara “guerra tecnológica” a las Big Tech y busca independizarse de Google, Amazon y Microsoft" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Ámsterdam declara “guerra tecnológica” a las Big Tech y busca independizarse de Google, Amazon y Microsoft</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-inteligencia-artificial-acelera-la-transformacion-digital-en-america-latina-y-preocupa-por-el-impacto-laboral-1778140208521/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778140204620_Ai_image.png" class="w-full h-44 object-cover" alt="La inteligencia artificial acelera la transformación digital en América Latina y preocupa por el impacto laboral" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La inteligencia artificial acelera la transformación digital en América Latina y preocupa por el impacto laboral</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/miles-de-usuarios-abandonan-bancos-tradicionales-tras-auge-de-nuevas-plataformas-digitales-de-pago-1778128518819/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778128513853_file_00000000148c71f6b16e025af73afffd.png" class="w-full h-44 object-cover" alt="Miles de usuarios abandonan bancos tradicionales tras auge de nuevas plataformas digitales de pago" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Miles de usuarios abandonan bancos tradicionales tras auge de nuevas plataformas digitales de pago</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/cientificos-detectan-misteriosa-senal-proveniente-del-espacio-profundo-y-sorprenden-a-la-comunidad-astronomica-1778128392761/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778128387741_file_000000007a6c71f6923eae0bff6db54c.png" class="w-full h-44 object-cover" alt="Científicos detectan misteriosa señal proveniente del espacio profundo y sorprenden a la comunidad astronómica" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Científicos detectan misteriosa señal proveniente del espacio profundo y sorprenden a la comunidad astronómica</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/nueva-inteligencia-artificial-capaz-de-crear-videos-ultra-realistas-desata-debate-mundial-en-internet-1778128074831/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778128070919_file_00000000a54871f6b1c4a317f125810f.png" class="w-full h-44 object-cover" alt="Nueva inteligencia artificial capaz de crear videos ultra realistas desata debate mundial en internet" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Nueva inteligencia artificial capaz de crear videos ultra realistas desata debate mundial en internet</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/del-celular-al-imperio-digital-pequenos-emprendedores-estan-convirtiendo-redes-sociales-en-negocios-millonarios-1778116350519/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778116346115_file_000000000c8c71fdbbb3be0569a585de.png" class="w-full h-44 object-cover" alt="“Del celular al imperio digital”: pequeños emprendedores están convirtiendo redes sociales en negocios millonarios" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">“Del celular al imperio digital”: pequeños emprendedores están convirtiendo redes sociales en negocios millonarios</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-inteligencia-artificial-ya-reemplaza-tareas-humanas-en-miles-de-pequenas-empresas-de-latinoamerica-1778115703584/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778115688660_uf.png" class="w-full h-44 object-cover" alt="La inteligencia artificial ya reemplaza tareas humanas en miles de pequeñas empresas de Latinoamérica" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La inteligencia artificial ya reemplaza tareas humanas en miles de pequeñas empresas de Latinoamérica</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+    </div>
+</main>
+
+<footer class="bg-gray-900 text-gray-300 mt-20">
+    <div class="max-w-7xl mx-auto px-4 py-14">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+            <div>
+                <img src="../logo/logo vectorizado.svg" class="h-10 mb-4 brightness-0 invert opacity-80" alt="Enfoque Mundial">
+                <p class="text-sm text-gray-400 leading-relaxed">Periodismo global con perspectiva. Información verificada, análisis profundo y cobertura internacional.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">El Medio</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="../sobre-nosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+                    <li><a href="../contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+                    <li><a href="../index.html" class="hover:text-white transition-colors">Inicio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="../privacidad.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                    <li><a href="../terminos.html" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
+            <p>&copy; <span id="copyright-year">2026</span> Enfoque Mundial &middot; Todos los derechos reservados &middot; <a href="../privacidad.html" class="hover:text-white">Privacidad</a> &middot; <a href="../terminos.html" class="hover:text-white">Términos</a></p>
+        </div>
+    </div>
+</footer>
+<script src="../js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+    document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+});
+function searchNews() {
+    const q = document.getElementById('searchInput').value.trim();
+    if (!q) return;
+    location.href = '../buscar/index.html?q=' + encodeURIComponent(q);
+}
+</script>
+</body>
+</html>
+

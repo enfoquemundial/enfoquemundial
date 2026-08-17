@@ -165,7 +165,43 @@ def rel(canonical_url):
     return "../" * depth
 
 
-def nav(canonical_url):
+CATEGORY_DISPLAY_NAMES = {
+    "Mundo": "Mundo",
+    "Politica": "Política",
+    "Politica internacional": "Política Internacional",
+    "Tecnología": "Tecnología",
+    "Finanzas": "Finanzas",
+    "Deportes": "Deportes",
+    "Cultura": "Cultura",
+    "Videojuegos": "Videojuegos",
+}
+
+
+def category_nav_bar(news, canonical_url):
+    """Barra de categorías fija debajo del header, con scroll horizontal en
+    móvil. Se muestran ordenadas por cuál tuvo publicación más reciente
+    primero (las categorías "más activas" quedan al frente)."""
+    if not news:
+        return ""
+    cats = sorted(set(a["category"] for a in news))
+    last_date = {c: max(a["date"] for a in news if a["category"] == c) for c in cats}
+    cats.sort(key=lambda c: last_date[c], reverse=True)
+    links = "".join(
+        f'<a href="{category_url(c)}" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">{esc(CATEGORY_DISPLAY_NAMES.get(c, c))}</a>'
+        for c in cats
+    )
+    return f"""
+<div class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center gap-6 overflow-x-auto py-3 no-scrollbar">
+            {links}
+        </div>
+    </div>
+</div>
+"""
+
+
+def nav(canonical_url, news=None):
     home = rel(canonical_url) + "index.html" if rel(canonical_url) else "index.html"
     login = rel(canonical_url) + "admin/login/index.html" if rel(canonical_url) else "admin/login/index.html"
     return f"""
@@ -189,7 +225,9 @@ def nav(canonical_url):
             </button>
         </div>
     </div>
+    {category_nav_bar(news, canonical_url)}
 </nav>
+<style>.no-scrollbar::-webkit-scrollbar {{ display: none; }} .no-scrollbar {{ -ms-overflow-style: none; scrollbar-width: none; }}</style>
 """
 
 
@@ -359,7 +397,7 @@ def generate_article_page(n, news):
                           for p in n["content"].split("\n") if p.strip())
 
     body = f"""
-{nav(url)}
+{nav(url, news)}
 {breadcrumbs(crumbs, url)}
 <main class="max-w-3xl mx-auto px-4 py-10">
     <article>
@@ -397,7 +435,7 @@ def generate_category_page(category, news):
     cards = "".join(article_card(a, url) for a in articles)
     noindex = len(articles) < MIN_ARTICLES_CATEGORY_INDEXABLE
     body = f"""
-{nav(url)}
+{nav(url, news)}
 {breadcrumbs(crumbs, url)}
 <main class="max-w-7xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-serif font-bold mb-10">{esc(category)}</h1>
@@ -422,7 +460,7 @@ def generate_author_page(author, news):
     cards = "".join(article_card(a, url) for a in articles)
     noindex = len(articles) < MIN_ARTICLES_AUTHOR_INDEXABLE
     body = f"""
-{nav(url)}
+{nav(url, news)}
 {breadcrumbs(crumbs, url)}
 <main class="max-w-7xl mx-auto px-4 py-10">
     <div class="mb-10">
@@ -498,7 +536,7 @@ def generate_homepage(news):
     extra_ld = f'<script type="application/ld+json">{json.dumps(ld_org, ensure_ascii=False)}</script>'
 
     body = f"""
-{nav(url)}
+{nav(url, news)}
 <main class="max-w-7xl mx-auto px-4 py-10">
     <section class="mb-16">{hero_html}</section>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">

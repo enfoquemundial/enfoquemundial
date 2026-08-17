@@ -38,7 +38,13 @@
             </button>
         </div>
     </div>
+    <div class="bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="categoryNavBar" class="flex items-center gap-6 overflow-x-auto py-3 no-scrollbar"></div>
+        </div>
+    </div>
 </nav>
+<style>.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }</style>
 <main class="max-w-7xl mx-auto px-4 py-10">
     <h1 class="text-2xl font-serif font-bold mb-8">Resultados de búsqueda</h1>
     <div id="results" class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -66,6 +72,23 @@
         return categorySlug(title);
     }
 
+    function renderCategoryNavBar(allNews) {
+        const displayNames = {
+            'Mundo': 'Mundo', 'Politica': 'Política', 'Politica internacional': 'Política Internacional',
+            'Tecnología': 'Tecnología', 'Finanzas': 'Finanzas', 'Deportes': 'Deportes',
+            'Cultura': 'Cultura', 'Videojuegos': 'Videojuegos',
+        };
+        const lastDate = {};
+        allNews.forEach(n => {
+            if (!lastDate[n.category] || n.date > lastDate[n.category]) lastDate[n.category] = n.date;
+        });
+        const cats = Object.keys(lastDate).sort((a, b) => lastDate[b].localeCompare(lastDate[a]));
+        const bar = document.getElementById('categoryNavBar');
+        if (bar) {
+            bar.innerHTML = cats.map(c => `<a href="../${categorySlug(c)}/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">${displayNames[c] || c}</a>`).join('');
+        }
+    }
+
     const params = new URLSearchParams(window.location.search);
     const q = (params.get('q') || '').toLowerCase().trim();
     document.getElementById('searchInput').value = q;
@@ -76,6 +99,7 @@
     };
 
     fetchNews().then(allNews => {
+        renderCategoryNavBar(allNews);
         const results = q
             ? allNews.filter(n =>
                 n.title.toLowerCase().includes(q) ||
