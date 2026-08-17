@@ -1,0 +1,27 @@
+name: Publicación manual (panel admin)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Procesar acción pendiente del panel
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: python3 scripts/manual_publish.py
