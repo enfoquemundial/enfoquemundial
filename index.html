@@ -8,20 +8,14 @@
     <meta name="description" content="Enfoque Mundial: noticias internacionales, análisis político, economía y más. Periodismo verificado con perspectiva global en español.">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Enfoque Mundial | Periodismo Global">
-    <meta property="og:description" content="Noticias internacionales, análisis y cobertura global en español.">
+    <meta property="og:description" content="Enfoque Mundial: noticias internacionales, análisis político, economía y más. Periodismo verificado con perspectiva global en español.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://enfoquemundial.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Enfoque Mundial | Periodismo Global">
+    <meta name="twitter:description" content="Enfoque Mundial: noticias internacionales, análisis político, economía y más. Periodismo verificado con perspectiva global en español.">
     <link rel="canonical" href="https://enfoquemundial.com/">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "NewsMediaOrganization",
-        "name": "Enfoque Mundial",
-        "url": "https://enfoquemundial.com/",
-        "logo": "https://enfoquemundial.com/logo/logo%20vectorizado.svg",
-        "description": "Enfoque Mundial: noticias internacionales, análisis político, economía y más. Periodismo verificado con perspectiva global en español."
-    }
-    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsMediaOrganization", "name": "Enfoque Mundial", "url": "https://enfoquemundial.com/", "logo": "https://enfoquemundial.com/logo/logo%20vectorizado.svg", "description": "Enfoque Mundial: noticias internacionales, análisis político, economía y más. Periodismo verificado con perspectiva global en español."}</script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
     <script>
@@ -33,149 +27,514 @@
 
     <link rel="stylesheet" href="css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        /* TAMAÑO MODERADO: 80px */
-        .logo-nav img { height: 80px; width: auto; transition: transform 0.3s ease; }
+        .logo-nav img { height: 80px; width: auto; }
     </style>
 </head>
 <body class="bg-white text-gray-900">
-    <div class="h-1 bg-black"></div>
+<div class="h-1 bg-black"></div>
 
-    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <!-- Grid de 3 columnas para control total de posición -->
-        <div class="max-w-7xl mx-auto px-4 h-28 grid grid-cols-3 items-center">
 
-            <!-- IZQUIERDA: LOGO -->
-            <div class="flex justify-start">
-                <div class="logo-nav cursor-pointer" onclick="location.href='index.html'">
-                    <img src="logo/logo vectorizado.svg" alt="Enfoque Mundial">
-                </div>
-            </div>
-
-            <!-- CENTRO: BUSCADOR -->
-            <div class="flex justify-center">
-                <div class="relative group w-full max-w-xs">
-                    <input type="text" id="searchInput" onkeyup="searchNews()" placeholder="Buscar..." class="bg-gray-50 rounded-full py-2 px-10 text-xs w-full transition-all outline-none border border-transparent focus:border-black text-center focus:bg-white shadow-sm">
-                    <i data-lucide="search" class="absolute left-4 top-2.5 w-4 h-4 text-gray-400 group-focus-within:text-black"></i>
-                </div>
-            </div>
-
-            <!-- DERECHA: INFO Y PERFIL -->
-            <div class="flex justify-end items-center gap-6">
-                <span id="current-date" class="hidden lg:block text-[10px] font-bold uppercase tracking-widest text-gray-400 text-right"></span>
-                <button onclick="location.href='admin/login/index.html'" class="text-gray-400 hover:text-black transition-colors">
-                    <i data-lucide="user" class="w-6 h-6"></i>
-                </button>
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-28 grid grid-cols-3 items-center">
+        <div class="flex justify-start">
+            <div class="logo-nav cursor-pointer" onclick="location.href='index.html'">
+                <img src="logo/logo vectorizado.svg" alt="Enfoque Mundial">
             </div>
         </div>
-    </nav>
-
-    <main class="max-w-7xl mx-auto px-4 py-10">
-        <section id="hero-section" class="mb-16"></section>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-8">
-                <h2 class="text-3xl font-serif font-bold mb-10">Lo Último</h2>
-                <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-                <div id="pagination" class="mt-16 flex justify-center gap-2 pb-20"></div>
-            </div>
-            <aside class="lg:col-span-4">
-                <div class="bg-gray-50 p-8 rounded-[2rem] sticky top-32">
-                    <h3 class="text-lg font-bold mb-8 flex items-center gap-3">
-                        <i data-lucide="trending-up" class="text-blue-600 w-5 h-5"></i> Tendencias
-                    </h3>
-                    <div id="trending-container" class="space-y-6 mb-10"></div>
-
-                    <!-- Native Banner Adsterra — DESACTIVADO antes de aplicar a AdSense.
-                    <div class="mt-6">
-                        <script async="async" data-cfasync="false" src="https://pl29481188.effectivecpmnetwork.com/091426877b50d797e2e1289ea439ffb0/invoke.js"></script>
-                        <div id="container-091426877b50d797e2e1289ea439ffb0"></div>
-                    </div>
-                    -->
-
-                    <!-- Banner 300x250 Adsterra — DESACTIVADO antes de aplicar a AdSense.
-                    <div class="mt-10 pt-10 border-t border-gray-200">
-                        <span class="text-gray-300 text-[10px] font-bold uppercase block text-center mb-4">Publicidad</span>
-                        <div id="adsense-sidebar" class="min-h-[250px] bg-white rounded-xl flex items-center justify-center">
-                            <script>
-                              atOptions = {
-                                'key' : 'ec550e6285b5aaf31bf9e3521ee96031',
-                                'format' : 'iframe',
-                                'height' : 250,
-                                'width' : 300,
-                                'params' : {}
-                              };
-                            </script>
-                            <script src="https://www.highperformanceformat.com/ec550e6285b5aaf31bf9e3521ee96031/invoke.js"></script>
-                        </div>
-                    </div>
-                    -->
-                </div>
-            </aside>
-        </div>
-    </main>
-
-    <footer class="bg-gray-900 text-gray-300 mt-20">
-        <div class="max-w-7xl mx-auto px-4 py-14">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-                <div>
-                    <img src="logo/logo vectorizado.svg" class="h-10 mb-4 brightness-0 invert opacity-80" alt="Enfoque Mundial">
-                    <p class="text-sm text-gray-400 leading-relaxed">Periodismo global con perspectiva. Información verificada, análisis profundo y cobertura internacional.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">El Medio</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="sobre-nosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
-                        <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
-                        <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="privacidad.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
-                        <li><a href="terminos.html" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
-                <p>© <span id="copyright-year">2026</span> Enfoque Mundial · Todos los derechos reservados · <a href="privacidad.html" class="hover:text-white">Privacidad</a> · <a href="terminos.html" class="hover:text-white">Términos</a></p>
+        <div class="flex justify-center">
+            <div class="relative group w-full max-w-xs">
+                <input type="text" id="searchInput" onkeyup="if(event.key==='Enter')searchNews()" placeholder="Buscar..." class="bg-gray-50 rounded-full py-2 px-10 text-xs w-full transition-all outline-none border border-transparent focus:border-black text-center focus:bg-white shadow-sm">
+                <i data-lucide="search" class="absolute left-4 top-2.5 w-4 h-4 text-gray-400 group-focus-within:text-black"></i>
             </div>
         </div>
-    </footer>
+        <div class="flex justify-end items-center gap-6">
+            <span id="current-date" class="hidden lg:block text-[10px] font-bold uppercase tracking-widest text-gray-400 text-right"></span>
+            <button onclick="location.href='admin/login/index.html'" class="text-gray-400 hover:text-black transition-colors">
+                <i data-lucide="user" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </div>
+</nav>
 
-    <!-- Popunder Adsterra — DESACTIVADO antes de aplicar a AdSense.
-    <script src="https://pl29481189.effectivecpmnetwork.com/39/9a/bc/399abc4305b755cd12005e839ae4ca35.js"></script>
-    -->
-    <script src="js/app.js"></script>
-    <script>
-        lucide.createIcons();
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+<main class="max-w-7xl mx-auto px-4 py-10">
+    <section class="mb-16">
+        <a href="https://enfoquemundial.com/cultura/parana-lee-ofrece-jornada-cultural-con-entrada-gratuita-este-domingo-1786923630881/" class="grid md:grid-cols-2 gap-8 items-center group">
+            <img src="https://images.unsplash.com/photo-1463320726281-696a485928c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8Ym9vayUyMGZhaXIlMjBldmVudHxlbnwwfDB8fHwxNzg2OTIzNjMwfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-80 object-cover rounded-3xl" alt="Paraná Lee ofrece jornada cultural con entrada gratuita este domingo" loading="lazy">
+            <div>
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Cultura</span>
+                <h2 class="text-3xl font-serif font-bold my-4 group-hover:underline">Paraná Lee ofrece jornada cultural con entrada gratuita este domingo</h2>
+                <p class="text-gray-500 line-clamp-3">La Feria del Libro Paraná Lee abre nuevamente sus puertas este domingo en la Sala Mayo, ofreciendo una jornada completa de actividades culturales para toda la familia. El evento, que se ha consolidado como un espacio de ...</p>
+                <p class="text-gray-400 text-xs mt-4">Esfrailin Quezada &middot; 16 de agosto de 2026</p>
+            </div>
+        </a></section>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-8">
+            <h2 class="text-3xl font-serif font-bold mb-10">Lo Último</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/mundo/espana-enfrenta-una-creciente-crisis-de-desertificacion-con-mas-de-la-mitad-de-su-territorio-en-riesgo-1786912247613/">
+        <img src="https://images.unsplash.com/photo-1593349783603-654a7069d88d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwY3JhY2tlZCUyMGVhcnRofGVufDB8MHx8fDE3ODY5MTIyNDd8MA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="España enfrenta una creciente crisis de desertificación con más de la mitad de su territorio en riesgo" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Mundo</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">España enfrenta una creciente crisis de desertificación con más de la mitad de su territorio en riesgo</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/cultura/la-promesa-nuevos-giros-dramaticos-marcaran-la-semana-del-10-al-14-de-agosto-1786899283618/">
+        <img src="https://images.unsplash.com/photo-1612544409025-e1f6a56c1152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8dGVsZXZpc2lvbiUyMGRyYW1hJTIwcHJvZHVjdGlvbnxlbnwwfDB8fHwxNzg2ODk5MjgzfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="La Promesa: Nuevos giros dramáticos marcarán la semana del 10 al 14 de agosto" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Cultura</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La Promesa: Nuevos giros dramáticos marcarán la semana del 10 al 14 de agosto</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/aumentos-salariales-en-salud-y-educacion-avances-que-no-llegan-completos-al-bolsillo-1786899085297/">
+        <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8cHJvZmVzc2lvbmFsJTIwaGVhbHRoY2FyZSUyMHdvcmtlcnN8ZW58MHwwfHx8MTc4Njg5OTA4NHww&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Aumentos salariales en Salud y Educación: avances que no llegan completos al bolsillo" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Aumentos salariales en Salud y Educación: avances que no llegan completos al bolsillo</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/finanzas/inversores-de-wall-street-reducen-posiciones-en-argentina-ante-incertidumbre-politica-1786898844512/">
+        <img src="https://images.unsplash.com/photo-1761233138997-44d9b002a08f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8c3RvY2slMjBtYXJrZXQlMjB0cmFkaW5nJTIwZmxvb3J8ZW58MHwwfHx8MTc4Njg5ODg0NHww&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Inversores de Wall Street reducen posiciones en Argentina ante incertidumbre política" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Finanzas</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Inversores de Wall Street reducen posiciones en Argentina ante incertidumbre política</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/minas-implementa-operativo-de-fiscalizacion-para-combatir-distorsiones-economicas-1786897852032/">
+        <img src="https://images.unsplash.com/photo-1642247911587-f9bd4954f4eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8TWluYXMlMjBpbXBsZW1lbnRhJTIwb3BlcmF0aXZvJTIwZGUlMjBmaXNjYWxpemFjaSVDMyVCM24lMjBwYXJhJTIwY29tYmF0aXIlMjBkaXxlbnwwfDB8fHwxNzg2ODk3ODUxfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Minas implementa operativo de fiscalización para combatir distorsiones económicas" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Minas implementa operativo de fiscalización para combatir distorsiones económicas</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/republica-dominicana-fortalece-alianza-con-costa-rica-para-impulsar-inversion-y-cooperacion-regional-1778314457297/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314439854_ChatGPT_Image_9_may_2026%2C_01_13_27_p.m..png" class="w-full h-44 object-cover" alt="República Dominicana fortalece alianza con Costa Rica para impulsar inversión y cooperación regional" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">República Dominicana fortalece alianza con Costa Rica para impulsar inversión y cooperación regional</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/luis-abinader-ordena-detener-proyecto-minero-romero-tras-protestas-en-san-juan-1778314285074/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314282174_ChatGPT_Image_9_may_2026%2C_01_11_05_p.m..png" class="w-full h-44 object-cover" alt="Luis Abinader ordena detener proyecto minero Romero tras protestas en San Juan" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Luis Abinader ordena detener proyecto minero Romero tras protestas en San Juan</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/america-latina-enfrenta-aumento-historico-de-ciberataques-contra-bancos-y-servicios-publicos-1778314110601/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314107626_ChatGPT_Image_9_may_2026%2C_01_08_13_p.m..png" class="w-full h-44 object-cover" alt="América Latina enfrenta aumento histórico de ciberataques contra bancos y servicios públicos" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">América Latina enfrenta aumento histórico de ciberataques contra bancos y servicios públicos</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/europa-acelera-el-desarrollo-militar-tras-aumento-de-tensiones-globales-y-amenazas-hibridas-1778314003483/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314000428_ChatGPT_Image_9_may_2026%2C_01_06_23_p.m..png" class="w-full h-44 object-cover" alt="Europa acelera el desarrollo militar tras aumento de tensiones globales y amenazas híbridas" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Europa acelera el desarrollo militar tras aumento de tensiones globales y amenazas híbridas</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/china-y-estados-unidos-elevan-la-tension-global-por-nuevas-disputas-comerciales-y-energeticas-1778313908007/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313900204_ChatGPT_Image_9_may_2026%2C_01_04_44_p.m..png" class="w-full h-44 object-cover" alt="China y Estados Unidos elevan la tensión global por nuevas disputas comerciales y energéticas" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">China y Estados Unidos elevan la tensión global por nuevas disputas comerciales y energéticas</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/google-prepara-una-revolucion-en-android-y-la-inteligencia-artificial-para-2026-1778313757639/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313754904_ChatGPT_Image_May_9%2C_2026%2C_01_02_10_PM.png" class="w-full h-44 object-cover" alt="Google prepara una revolución en Android y la inteligencia artificial para 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Google prepara una revolución en Android y la inteligencia artificial para 2026</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-computacion-cuantica-se-acerca-a-su-primer-uso-comercial-real-en-2026-1778313719556/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313716996_ChatGPT_Image_May_9%2C_2026%2C_01_01_22_PM.png" class="w-full h-44 object-cover" alt="La computación cuántica se acerca a su primer uso comercial real en 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La computación cuántica se acerca a su primer uso comercial real en 2026</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </div>
+        <aside class="lg:col-span-4">
+            <div class="bg-gray-50 p-8 rounded-[2rem] sticky top-32">
+                <h3 class="text-lg font-bold mb-8 flex items-center gap-3">
+                    <i data-lucide="trending-up" class="text-blue-600 w-5 h-5"></i> Tendencias
+                </h3>
+                <div class="space-y-6 mb-10"><a href="https://enfoquemundial.com/cultura/parana-lee-ofrece-jornada-cultural-con-entrada-gratuita-este-domingo-1786923630881/" class="flex gap-3 group">
+            <img src="https://images.unsplash.com/photo-1463320726281-696a485928c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8Ym9vayUyMGZhaXIlMjBldmVudHxlbnwwfDB8fHwxNzg2OTIzNjMwfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-16 h-16 object-cover rounded-xl flex-shrink-0" alt="Paraná Lee ofrece jornada cultural con entrada gratuita este domingo" loading="lazy">
+            <div><h4 class="text-sm font-bold group-hover:underline line-clamp-2">Paraná Lee ofrece jornada cultural con entrada gratuita este domingo</h4>
+            <p class="text-[10px] text-gray-400 mt-1">Cultura</p></div>
+        </a><a href="https://enfoquemundial.com/mundo/espana-enfrenta-una-creciente-crisis-de-desertificacion-con-mas-de-la-mitad-de-su-territorio-en-riesgo-1786912247613/" class="flex gap-3 group">
+            <img src="https://images.unsplash.com/photo-1593349783603-654a7069d88d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwY3JhY2tlZCUyMGVhcnRofGVufDB8MHx8fDE3ODY5MTIyNDd8MA&ixlib=rb-4.1.0&q=80&w=1080" class="w-16 h-16 object-cover rounded-xl flex-shrink-0" alt="España enfrenta una creciente crisis de desertificación con más de la mitad de su territorio en riesgo" loading="lazy">
+            <div><h4 class="text-sm font-bold group-hover:underline line-clamp-2">España enfrenta una creciente crisis de desertificación con más de la mitad de su territorio en riesgo</h4>
+            <p class="text-[10px] text-gray-400 mt-1">Mundo</p></div>
+        </a><a href="https://enfoquemundial.com/cultura/la-promesa-nuevos-giros-dramaticos-marcaran-la-semana-del-10-al-14-de-agosto-1786899283618/" class="flex gap-3 group">
+            <img src="https://images.unsplash.com/photo-1612544409025-e1f6a56c1152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8dGVsZXZpc2lvbiUyMGRyYW1hJTIwcHJvZHVjdGlvbnxlbnwwfDB8fHwxNzg2ODk5MjgzfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-16 h-16 object-cover rounded-xl flex-shrink-0" alt="La Promesa: Nuevos giros dramáticos marcarán la semana del 10 al 14 de agosto" loading="lazy">
+            <div><h4 class="text-sm font-bold group-hover:underline line-clamp-2">La Promesa: Nuevos giros dramáticos marcarán la semana del 10 al 14 de agosto</h4>
+            <p class="text-[10px] text-gray-400 mt-1">Cultura</p></div>
+        </a><a href="https://enfoquemundial.com/politica/aumentos-salariales-en-salud-y-educacion-avances-que-no-llegan-completos-al-bolsillo-1786899085297/" class="flex gap-3 group">
+            <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8cHJvZmVzc2lvbmFsJTIwaGVhbHRoY2FyZSUyMHdvcmtlcnN8ZW58MHwwfHx8MTc4Njg5OTA4NHww&ixlib=rb-4.1.0&q=80&w=1080" class="w-16 h-16 object-cover rounded-xl flex-shrink-0" alt="Aumentos salariales en Salud y Educación: avances que no llegan completos al bolsillo" loading="lazy">
+            <div><h4 class="text-sm font-bold group-hover:underline line-clamp-2">Aumentos salariales en Salud y Educación: avances que no llegan completos al bolsillo</h4>
+            <p class="text-[10px] text-gray-400 mt-1">Politica</p></div>
+        </a><a href="https://enfoquemundial.com/finanzas/inversores-de-wall-street-reducen-posiciones-en-argentina-ante-incertidumbre-politica-1786898844512/" class="flex gap-3 group">
+            <img src="https://images.unsplash.com/photo-1761233138997-44d9b002a08f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8c3RvY2slMjBtYXJrZXQlMjB0cmFkaW5nJTIwZmxvb3J8ZW58MHwwfHx8MTc4Njg5ODg0NHww&ixlib=rb-4.1.0&q=80&w=1080" class="w-16 h-16 object-cover rounded-xl flex-shrink-0" alt="Inversores de Wall Street reducen posiciones en Argentina ante incertidumbre política" loading="lazy">
+            <div><h4 class="text-sm font-bold group-hover:underline line-clamp-2">Inversores de Wall Street reducen posiciones en Argentina ante incertidumbre política</h4>
+            <p class="text-[10px] text-gray-400 mt-1">Finanzas</p></div>
+        </a></div>
+            </div>
+        </aside>
+    </div>
+    
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Cultura</h2>
+                <a href="cultura/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/cultura/parana-lee-ofrece-jornada-cultural-con-entrada-gratuita-este-domingo-1786923630881/">
+        <img src="https://images.unsplash.com/photo-1463320726281-696a485928c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8Ym9vayUyMGZhaXIlMjBldmVudHxlbnwwfDB8fHwxNzg2OTIzNjMwfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Paraná Lee ofrece jornada cultural con entrada gratuita este domingo" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Cultura</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Paraná Lee ofrece jornada cultural con entrada gratuita este domingo</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/cultura/la-promesa-nuevos-giros-dramaticos-marcaran-la-semana-del-10-al-14-de-agosto-1786899283618/">
+        <img src="https://images.unsplash.com/photo-1612544409025-e1f6a56c1152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8dGVsZXZpc2lvbiUyMGRyYW1hJTIwcHJvZHVjdGlvbnxlbnwwfDB8fHwxNzg2ODk5MjgzfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="La Promesa: Nuevos giros dramáticos marcarán la semana del 10 al 14 de agosto" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Cultura</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La Promesa: Nuevos giros dramáticos marcarán la semana del 10 al 14 de agosto</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/cultura/ishowspeed-y-alofoke-protagonizan-polemica-tras-speed-afirmar-que-alguien-envio-bots-a-su-transmision-1778224629834/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778224606457_file_00000000d65871f781eaa245eddb6753.png" class="w-full h-44 object-cover" alt="IShowSpeed y Alofoke protagonizan polémica tras Speed afirmar que alguien envió bots a su transmisión." loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Cultura</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">IShowSpeed y Alofoke protagonizan polémica tras Speed afirmar que alguien envió bots a su transmisión.</h3>
+            <p class="text-gray-400 text-[10px]">8 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Deportes</h2>
+                <a href="deportes/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/deportes/joven-atleta-rompe-record-historico-y-se-convierte-en-sensacion-mundial-tras-una-carrera-inesperada-1778128796482/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778128792409_file_000000006d1871f6a49f3c6a1907d92d.png" class="w-full h-44 object-cover" alt="Joven atleta rompe récord histórico y se convierte en sensación mundial tras una carrera inesperada" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Deportes</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Joven atleta rompe récord histórico y se convierte en sensación mundial tras una carrera inesperada</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/deportes/joven-promesa-sorprende-al-mundo-del-futbol-tras-llevar-a-su-equipo-a-una-final-historica-1778117055959/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778117044751_file_00000000fc8471fda3e20f1aabec76e6.png" class="w-full h-44 object-cover" alt="Joven promesa sorprende al mundo del fútbol tras llevar a su equipo a una final histórica" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Deportes</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Joven promesa sorprende al mundo del fútbol tras llevar a su equipo a una final histórica</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Finanzas</h2>
+                <a href="finanzas/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/finanzas/inversores-de-wall-street-reducen-posiciones-en-argentina-ante-incertidumbre-politica-1786898844512/">
+        <img src="https://images.unsplash.com/photo-1761233138997-44d9b002a08f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8c3RvY2slMjBtYXJrZXQlMjB0cmFkaW5nJTIwZmxvb3J8ZW58MHwwfHx8MTc4Njg5ODg0NHww&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Inversores de Wall Street reducen posiciones en Argentina ante incertidumbre política" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Finanzas</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Inversores de Wall Street reducen posiciones en Argentina ante incertidumbre política</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/finanzas/el-mercado-cripto-vuelve-a-explotar-inversionistas-corren-hacia-las-monedas-digitales-tras-nueva-ola-de-ganancias-1778117636235/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778117632497_file_0000000065bc71f88c64b0d06c770eb2.png" class="w-full h-44 object-cover" alt="El mercado cripto vuelve a explotar: inversionistas corren hacia las monedas digitales tras nueva ola de ganancias" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Finanzas</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">El mercado cripto vuelve a explotar: inversionistas corren hacia las monedas digitales tras nueva ola de ganancias</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Mundo</h2>
+                <a href="mundo/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/mundo/espana-enfrenta-una-creciente-crisis-de-desertificacion-con-mas-de-la-mitad-de-su-territorio-en-riesgo-1786912247613/">
+        <img src="https://images.unsplash.com/photo-1593349783603-654a7069d88d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwY3JhY2tlZCUyMGVhcnRofGVufDB8MHx8fDE3ODY5MTIyNDd8MA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="España enfrenta una creciente crisis de desertificación con más de la mitad de su territorio en riesgo" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Mundo</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">España enfrenta una creciente crisis de desertificación con más de la mitad de su territorio en riesgo</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/mundo/extrano-fenomeno-luminoso-en-el-oceano-sorprende-a-turistas-y-cientificos-durante-la-madrugada-1778128688386/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778128684796_file_00000000131471f69eeb6abf69b855dd.png" class="w-full h-44 object-cover" alt="Extraño fenómeno luminoso en el océano sorprende a turistas y científicos durante la madrugada" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Mundo</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Extraño fenómeno luminoso en el océano sorprende a turistas y científicos durante la madrugada</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Politica</h2>
+                <a href="politica/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/aumentos-salariales-en-salud-y-educacion-avances-que-no-llegan-completos-al-bolsillo-1786899085297/">
+        <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8cHJvZmVzc2lvbmFsJTIwaGVhbHRoY2FyZSUyMHdvcmtlcnN8ZW58MHwwfHx8MTc4Njg5OTA4NHww&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Aumentos salariales en Salud y Educación: avances que no llegan completos al bolsillo" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Aumentos salariales en Salud y Educación: avances que no llegan completos al bolsillo</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/minas-implementa-operativo-de-fiscalizacion-para-combatir-distorsiones-economicas-1786897852032/">
+        <img src="https://images.unsplash.com/photo-1642247911587-f9bd4954f4eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8TWluYXMlMjBpbXBsZW1lbnRhJTIwb3BlcmF0aXZvJTIwZGUlMjBmaXNjYWxpemFjaSVDMyVCM24lMjBwYXJhJTIwY29tYmF0aXIlMjBkaXxlbnwwfDB8fHwxNzg2ODk3ODUxfDA&ixlib=rb-4.1.0&q=80&w=1080" class="w-full h-44 object-cover" alt="Minas implementa operativo de fiscalización para combatir distorsiones económicas" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Minas implementa operativo de fiscalización para combatir distorsiones económicas</h3>
+            <p class="text-gray-400 text-[10px]">16 de agosto de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica/republica-dominicana-fortalece-alianza-con-costa-rica-para-impulsar-inversion-y-cooperacion-regional-1778314457297/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314439854_ChatGPT_Image_9_may_2026%2C_01_13_27_p.m..png" class="w-full h-44 object-cover" alt="República Dominicana fortalece alianza con Costa Rica para impulsar inversión y cooperación regional" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">República Dominicana fortalece alianza con Costa Rica para impulsar inversión y cooperación regional</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Politica internacional</h2>
+                <a href="politica-internacional/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica-internacional/nueva-ofensiva-migratoria-en-estados-unidos-provoca-temor-por-redadas-y-deportaciones-masivas-1778140562040/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778140546192_ice.png" class="w-full h-44 object-cover" alt="Nueva ofensiva migratoria en Estados Unidos provoca temor por redadas y deportaciones masivas" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica internacional</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Nueva ofensiva migratoria en Estados Unidos provoca temor por redadas y deportaciones masivas</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica-internacional/crece-la-tension-mundial-por-posible-acuerdo-entre-estados-unidos-e-iran-para-evitar-una-crisis-energetica-global-1778140327886/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778140324539_trump_iran.png" class="w-full h-44 object-cover" alt="Crece la tensión mundial por posible acuerdo entre Estados Unidos e Irán para evitar una crisis energética global" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica internacional</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Crece la tensión mundial por posible acuerdo entre Estados Unidos e Irán para evitar una crisis energética global</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/politica-internacional/gobierno-de-trump-intensifica-batalla-legal-contra-the-new-york-times-por-presunta-discriminacion-laboral-1778139943653/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778139936824_imagen_demanda_trump.png" class="w-full h-44 object-cover" alt="Gobierno de Trump intensifica batalla legal contra The New York Times por presunta discriminación laboral" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Politica internacional</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Gobierno de Trump intensifica batalla legal contra The New York Times por presunta discriminación laboral</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Tecnología</h2>
+                <a href="tecnologia/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/america-latina-enfrenta-aumento-historico-de-ciberataques-contra-bancos-y-servicios-publicos-1778314110601/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778314107626_ChatGPT_Image_9_may_2026%2C_01_08_13_p.m..png" class="w-full h-44 object-cover" alt="América Latina enfrenta aumento histórico de ciberataques contra bancos y servicios públicos" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">América Latina enfrenta aumento histórico de ciberataques contra bancos y servicios públicos</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/google-prepara-una-revolucion-en-android-y-la-inteligencia-artificial-para-2026-1778313757639/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313754904_ChatGPT_Image_May_9%2C_2026%2C_01_02_10_PM.png" class="w-full h-44 object-cover" alt="Google prepara una revolución en Android y la inteligencia artificial para 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">Google prepara una revolución en Android y la inteligencia artificial para 2026</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/tecnologia/la-computacion-cuantica-se-acerca-a-su-primer-uso-comercial-real-en-2026-1778313719556/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778313716996_ChatGPT_Image_May_9%2C_2026%2C_01_01_22_PM.png" class="w-full h-44 object-cover" alt="La computación cuántica se acerca a su primer uso comercial real en 2026" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Tecnología</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La computación cuántica se acerca a su primer uso comercial real en 2026</h3>
+            <p class="text-gray-400 text-[10px]">9 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif font-bold">Videojuegos</h2>
+                <a href="videojuegos/index.html" class="text-xs font-bold text-blue-600 hover:underline">Ver todas &rarr;</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/videojuegos/gta-6-dispara-la-expectativa-mundial-y-revoluciona-la-industria-del-entretenimiento-digital-1778142140534/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778142114248_gta.png" class="w-full h-44 object-cover" alt="GTA 6 dispara la expectativa mundial y revoluciona la industria del entretenimiento digital" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Videojuegos</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">GTA 6 dispara la expectativa mundial y revoluciona la industria del entretenimiento digital</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/videojuegos/la-industria-de-los-videojuegos-vive-una-nueva-era-en-2026-inteligencia-artificial-mundos-abiertos-gigantes-y-record-de-jugadores-1778141651442/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778141648004_juegos.png" class="w-full h-44 object-cover" alt="La industria de los videojuegos vive una nueva era en 2026: inteligencia artificial, mundos abiertos gigantes y récord de jugadores" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Videojuegos</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">La industria de los videojuegos vive una nueva era en 2026: inteligencia artificial, mundos abiertos gigantes y récord de jugadores</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article>
+<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <a href="https://enfoquemundial.com/videojuegos/gta-6-rompe-internet-nuevamente-tras-nuevas-filtraciones-y-teorias-sobre-el-mapa-mas-grande-de-la-saga-1778129054513/">
+        <img src="https://raw.githubusercontent.com/enfoquemundial/enfoquemundial/main/images/uploads/1778129049031_file_00000000686c71f6aa52b80b0327ffbd.png" class="w-full h-44 object-cover" alt="GTA 6 rompe internet nuevamente tras nuevas filtraciones y teorías sobre el mapa más grande de la saga" loading="lazy">
+        <div class="p-4">
+            <span class="text-blue-600 font-bold text-[9px] uppercase">Videojuegos</span>
+            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">GTA 6 rompe internet nuevamente tras nuevas filtraciones y teorías sobre el mapa más grande de la saga</h3>
+            <p class="text-gray-400 text-[10px]">7 de mayo de 2026</p>
+        </div>
+    </a>
+</article></div>
+        </section>
+</main>
 
-        function searchNews() {
-            const q = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (!q) { renderHome(1); return; }
-            fetchNews().then(allNews => {
-                const filtered = allNews.filter(n =>
-                    n.title.toLowerCase().includes(q) ||
-                    (n.content && n.content.toLowerCase().includes(q)) ||
-                    (n.category && n.category.toLowerCase().includes(q))
-                );
-                const container = document.getElementById('news-container');
-                const hero = document.getElementById('hero-section');
-                const paginationEl = document.getElementById('pagination');
-                if (hero) hero.innerHTML = '';
-                if (paginationEl) paginationEl.innerHTML = '';
-                container.innerHTML = filtered.length
-                    ? filtered.map(n => `<article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onclick="location.href='article.html?id=${n.id}'"><img src="${n.images[0]}" class="w-full h-44 object-cover" alt="${n.title}" loading="lazy"><div class="p-4"><span class="text-blue-600 font-bold text-[9px] uppercase">${n.category}</span><h3 class="font-bold my-2 line-clamp-2 text-gray-800">${n.title}</h3><p class="text-gray-400 text-[10px]">${new Date(n.date).toLocaleDateString('es-ES')}</p></div></article>`).join('')
-                    : '<p class="text-gray-400 col-span-2 py-10 text-center">No se encontraron resultados.</p>';
-            });
-        }
-
-        // window.onload ya lo define js/app.js — se elimina la duplicación aquí.
-    </script>
-<script>document.getElementById("copyright-year").textContent = new Date().getFullYear();</script>
+<footer class="bg-gray-900 text-gray-300 mt-20">
+    <div class="max-w-7xl mx-auto px-4 py-14">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+            <div>
+                <img src="logo/logo vectorizado.svg" class="h-10 mb-4 brightness-0 invert opacity-80" alt="Enfoque Mundial">
+                <p class="text-sm text-gray-400 leading-relaxed">Periodismo global con perspectiva. Información verificada, análisis profundo y cobertura internacional.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">El Medio</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="sobre-nosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+                    <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="privacidad.html" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                    <li><a href="terminos.html" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
+            <p>&copy; <span id="copyright-year">2026</span> Enfoque Mundial &middot; Todos los derechos reservados &middot; <a href="privacidad.html" class="hover:text-white">Privacidad</a> &middot; <a href="terminos.html" class="hover:text-white">Términos</a></p>
+        </div>
+    </div>
+</footer>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+    document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+});
+function searchNews() {
+    const q = document.getElementById('searchInput').value.trim();
+    if (!q) return;
+    location.href = 'buscar/index.html?q=' + encodeURIComponent(q);
+}
+</script>
 </body>
 </html>
+

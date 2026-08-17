@@ -40,8 +40,30 @@ function showError() {
         </div>`;
 }
 
+function slugify(text) {
+    return (text || '')
+        .toString()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '') || 'articulo';
+}
+
+function newCleanUrl(n) {
+    return `${SITE_URL}/${slugify(n.category)}/${slugify(n.title)}-${n.id}/`;
+}
+
 function renderArticle(n) {
-    const url = `${SITE_URL}/article.html?id=${n.id}`;
+    // Esta página (article.html?id=...) es la versión antigua. Si la noticia
+    // ya tiene su página nueva y permanente, redirige ahí para consolidar
+    // todo en una sola URL (mejor para SEO y para no duplicar contenido).
+    const cleanUrl = newCleanUrl(n);
+    if (window.location.href.indexOf('article.html') !== -1) {
+        window.location.replace(cleanUrl);
+        return;
+    }
+
+    const url = cleanUrl;
     const description = buildDescription(n.content);
     const image = (n.images && n.images[0]) ? n.images[0] : '';
 

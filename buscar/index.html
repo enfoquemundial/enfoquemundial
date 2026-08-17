@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../logo/logo%20vectorizado.svg">
+    <title>Buscar | Enfoque Mundial</title>
+    <meta name="description" content="Busca noticias en Enfoque Mundial.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://enfoquemundial.com/buscar/">
+    <link rel="stylesheet" href="../css/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .logo-nav img { height: 80px; width: auto; }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+<div class="h-1 bg-black"></div>
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-28 grid grid-cols-3 items-center">
+        <div class="flex justify-start">
+            <div class="logo-nav cursor-pointer" onclick="location.href='../index.html'">
+                <img src="../logo/logo vectorizado.svg" alt="Enfoque Mundial">
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="relative group w-full max-w-xs">
+                <input type="text" id="searchInput" placeholder="Buscar..." class="bg-gray-50 rounded-full py-2 px-10 text-xs w-full transition-all outline-none border border-transparent focus:border-black text-center focus:bg-white shadow-sm">
+                <i data-lucide="search" class="absolute left-4 top-2.5 w-4 h-4 text-gray-400"></i>
+            </div>
+        </div>
+        <div class="flex justify-end items-center gap-6">
+            <button onclick="location.href='../admin/login/index.html'" class="text-gray-400 hover:text-black transition-colors">
+                <i data-lucide="user" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-2xl font-serif font-bold mb-8">Resultados de búsqueda</h1>
+    <div id="results" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <p class="text-gray-400 col-span-3 py-10 text-center">Buscando...</p>
+    </div>
+</main>
+<footer class="bg-gray-900 text-gray-300 mt-20">
+    <div class="max-w-7xl mx-auto px-4 py-14">
+        <div class="border-t border-gray-700 pt-8 text-center text-xs text-gray-500">
+            <p>&copy; <span id="copyright-year">2026</span> Enfoque Mundial &middot; Todos los derechos reservados &middot; <a href="../privacidad.html" class="hover:text-white">Privacidad</a> &middot; <a href="../terminos.html" class="hover:text-white">Términos</a></p>
+        </div>
+    </div>
+</footer>
+<script src="../js/app.js"></script>
+<script>
+    lucide.createIcons();
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
+    function categorySlug(cat) {
+        return cat.toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+    function titleSlug(title) {
+        return categorySlug(title);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const q = (params.get('q') || '').toLowerCase().trim();
+    document.getElementById('searchInput').value = q;
+    document.getElementById('searchInput').onkeyup = function(e) {
+        if (e.key === 'Enter') {
+            location.href = '?q=' + encodeURIComponent(this.value);
+        }
+    };
+
+    fetchNews().then(allNews => {
+        const results = q
+            ? allNews.filter(n =>
+                n.title.toLowerCase().includes(q) ||
+                (n.content && n.content.toLowerCase().includes(q)) ||
+                (n.category && n.category.toLowerCase().includes(q)))
+            : [];
+        const container = document.getElementById('results');
+        if (!q) {
+            container.innerHTML = '<p class="text-gray-400 col-span-3 py-10 text-center">Escribe algo para buscar.</p>';
+            return;
+        }
+        container.innerHTML = results.length
+            ? results.map(n => `
+                <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <a href="../${categorySlug(n.category)}/${titleSlug(n.title)}-${n.id}/">
+                        <img src="${n.images[0]}" class="w-full h-44 object-cover" alt="${n.title}" loading="lazy">
+                        <div class="p-4">
+                            <span class="text-blue-600 font-bold text-[9px] uppercase">${n.category}</span>
+                            <h3 class="font-bold my-2 line-clamp-2 text-gray-800">${n.title}</h3>
+                        </div>
+                    </a>
+                </article>`).join('')
+            : '<p class="text-gray-400 col-span-3 py-10 text-center">No se encontraron resultados.</p>';
+    });
+</script>
+</body>
+</html>

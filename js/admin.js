@@ -62,9 +62,13 @@ function showSection(section) {
 }
 
 // --- CATEGORÍAS ---
+// Estas son EXACTAMENTE las mismas categorías que acepta el generador
+// (VALID_CATEGORIES en scripts/generate_site.py) — no se puede agregar
+// ninguna otra porque el servidor la rechazaría de todos modos.
+const VALID_CATEGORIES = ['Mundo', 'Politica', 'Politica internacional', 'Tecnología', 'Finanzas', 'Deportes', 'Cultura', 'Videojuegos'];
+
 function getCategories() {
-    const data = localStorage.getItem(CATEGORIES_KEY);
-    return data ? JSON.parse(data) : ['Tecnología', 'Mundo', 'Negocios', 'Deportes', 'Cultura'];
+    return VALID_CATEGORIES;
 }
 function renderCategories() {
     const cats = getCategories();
@@ -72,15 +76,7 @@ function renderCategories() {
     if (select) select.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
 }
 function addNewCategory() {
-    const newCat = prompt('Nombre de la nueva categoría:');
-    if (newCat) {
-        let cats = getCategories();
-        if (!cats.includes(newCat.trim())) {
-            cats.push(newCat.trim());
-            localStorage.setItem(CATEGORIES_KEY, JSON.stringify(cats));
-            renderCategories();
-        }
-    }
+    alert('Las categorías están fijas para que coincidan con las que acepta el generador del sitio. Si necesitas una categoría nueva, avísale al desarrollador para agregarla en ambos lugares a la vez (panel y generador).');
 }
 
 // --- IMÁGENES ---
@@ -144,7 +140,8 @@ async function uploadToGitHub(base64Data, fileName, config) {
     throw new Error('Error al subir imagen. Verifica el Token.');
 }
 
-// --- PUBLICACIÓN ---
+// --- PUBLICACIÓN (delega TODO en el generador vía GitHub Actions —
+// el panel nunca escribe HTML directamente, solo describe la acción) ---
 window.addEventListener('DOMContentLoaded', () => {
     renderAdminList();
     const form = document.getElementById('news-form');
@@ -156,116 +153,127 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!config) return;
 
             const submitBtn = document.getElementById('submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Sincronizando con GitHub...";
 
             const id = document.getElementById('edit-id').value;
-            const news = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-            const newsData = {
+            const payload = {
+                action: id ? 'edit' : 'create',
                 id: id ? parseInt(id) : Date.now(),
                 title: document.getElementById('title').value,
                 content: document.getElementById('content').value,
                 category: document.getElementById('category').value,
                 author: document.getElementById('author').value || 'Redacción',
-                date: id ? news.find(n => n.id == id).date : new Date().toISOString(),
-                images: currentImages.length > 0 ? currentImages : ['https://via.placeholder.com/800'],
-                views: id ? (news.find(n => n.id == id).views || 0) : 0
             };
-            const updatedNews = id ? news.map(n => n.id == id ? newsData : n) : [newsData, ...news];
+            if (currentImages.length > 0) payload.images = currentImages;
+            if (!id) payload.date = new Date().toISOString();
+
+            // Validación local rápida, para no hacer esperar al usuario si algo
+            // obvio falta — pero la validación que de verdad manda es la del
+            // generador del lado del servidor (misma lógica, una sola fuente
+            // de verdad); esto es solo para feedback instantáneo.
+            const localError = quickValidate(payload);
+            if (localError) { alert('⚠️ ' + localError); return; }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Publicando...';
 
             try {
-                const ok = await syncNewsToGitHub(updatedNews, config);
-                if (ok) {
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedNews));
-                    await syncSitemapToGitHub(updatedNews, config);
-                    const articleUrl = `https://enfoquemundial.com/article.html?id=${newsData.id}`;
-                    alert(`✅ ¡PUBLICADO CORRECTAMENTE!\n\nEnlace de la noticia:\n${articleUrl}\n\n(También puedes copiarlo después desde el botón "Copiar enlace" en la lista)`);
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(articleUrl).catch(() => {});
-                    }
-                    location.reload();
-                }
+                await dispatchPublish(payload, config, submitBtn);
             } catch (err) {
-                alert("Error de sincronización: " + err.message);
+                alert('❌ ' + err.message);
+            } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerText = "Publicar Noticia";
+                submitBtn.innerText = 'Publicar Noticia';
             }
         };
     }
 });
 
-async function syncNewsToGitHub(newsArray, config) {
-    const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.dataPath}`;
-    let sha = "";
-    try {
-        const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
-        if (res.ok) { const data = await res.json(); sha = data.sha; }
-    } catch (e) {}
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(newsArray, null, 2))));
-    const response = await fetch(url, {
-        method: 'PUT',
-        headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: "Update news", content: content, sha: sha })
-    });
-    return response.ok;
+// Validación ligera en el navegador (mismas reglas mínimas que el generador,
+// para feedback instantáneo — la autoridad final es siempre el servidor).
+function quickValidate(payload) {
+    const templateMarkers = ['Título\n', 'Categoría\n', 'Desarrollo de la noticia', 'no inventada', 'Lorem ipsum', 'PLACEHOLDER'];
+    if (!payload.title || !payload.title.trim()) return 'El título no puede estar vacío.';
+    if (!payload.content || payload.content.trim().split(/\s+/).length < 100) return 'El contenido debe tener al menos 100 palabras.';
+    if (!payload.category || !VALID_CATEGORIES.includes(payload.category)) return 'Debes elegir una categoría válida de la lista.';
+    if (!payload.author || !payload.author.trim()) return 'El autor no puede estar vacío.';
+    for (const m of templateMarkers) {
+        if (payload.title.includes(m) || payload.content.includes(m)) {
+            return `El contenido parece tener texto de plantilla sin borrar ("${m.trim()}").`;
+        }
+    }
+    return null;
 }
 
-// Regenera sitemap.xml con TODAS las páginas fijas + cada noticia individual.
-// Se ejecuta automáticamente cada vez que se publica o borra una noticia.
-async function syncSitemapToGitHub(newsArray, config) {
-    const SITE_URL = 'https://enfoquemundial.com';
-    const staticPages = [
-        { loc: `${SITE_URL}/`, changefreq: 'daily', priority: '1.0' },
-        { loc: `${SITE_URL}/sobre-nosotros.html`, changefreq: 'monthly', priority: '0.8' },
-        { loc: `${SITE_URL}/contacto.html`, changefreq: 'monthly', priority: '0.8' },
-        { loc: `${SITE_URL}/privacidad.html`, changefreq: 'yearly', priority: '0.5' },
-        { loc: `${SITE_URL}/terminos.html`, changefreq: 'yearly', priority: '0.5' },
-    ];
-
-    const escapeXml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-    const staticXml = staticPages.map(p => `
-  <url>
-    <loc>${p.loc}</loc>
-    <changefreq>${p.changefreq}</changefreq>
-    <priority>${p.priority}</priority>
-  </url>`).join('');
-
-    const articlesXml = newsArray.map(n => {
-        const lastmod = n.date ? new Date(n.date).toISOString().split('T')[0] : '';
-        return `
-  <url>
-    <loc>${escapeXml(`${SITE_URL}/article.html?id=${n.id}`)}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>`;
-    }).join('');
-
-    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticXml}${articlesXml}
-</urlset>
-`;
-
-    const sitemapPath = 'sitemap.xml';
-    const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${sitemapPath}`;
-    let sha = "";
+// Sube data/_pending_publish.json y dispara el workflow "Publicación manual
+// (panel admin)", que corre scripts/manual_publish.py — el MISMO generador
+// que usa la automatización. Luego espera (polling) a que termine y confirma
+// éxito o error real, sin adivinar.
+async function dispatchPublish(payload, config, submitBtn) {
+    const pendingUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/data/_pending_publish.json`;
+    let sha = '';
     try {
-        const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
-        if (res.ok) { const data = await res.json(); sha = data.sha; }
+        const res = await fetch(pendingUrl, { headers: { 'Authorization': `token ${config.token}` } });
+        if (res.ok) { const d = await res.json(); sha = d.sha; }
     } catch (e) {}
-    const content = btoa(unescape(encodeURIComponent(sitemapXml)));
-    try {
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: "Update sitemap.xml", content: content, sha: sha })
-        });
-        return response.ok;
-    } catch (e) {
-        console.error('Error actualizando sitemap.xml:', e);
-        return false;
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+    const putBody = { message: `Panel: solicitud de ${payload.action}`, content };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(pendingUrl, {
+        method: 'PUT',
+        headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(putBody),
+    });
+    if (!putRes.ok) throw new Error('No se pudo subir la solicitud a GitHub. Revisa tu Token.');
+
+    const dispatchUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/actions/workflows/manual-publish.yml/dispatches`;
+    const dispatchTime = new Date();
+    const dispatchRes = await fetch(dispatchUrl, {
+        method: 'POST',
+        headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ref: 'main' }),
+    });
+    if (!dispatchRes.ok) throw new Error('No se pudo iniciar la publicación. Revisa tu Token (necesita permiso "repo").');
+
+    submitBtn.innerText = 'Generando páginas del sitio...';
+    const result = await pollWorkflowRun(config, dispatchTime, submitBtn);
+
+    if (result === 'success') {
+        alert('✅ ¡Publicado correctamente! El sitio ya se actualizó.');
+        location.reload();
+    } else if (result === 'failure') {
+        throw new Error('El generador rechazó la publicación (revisa la pestaña "Actions" en GitHub para ver el motivo exacto). No se publicó nada.');
+    } else {
+        throw new Error('La publicación está tardando más de lo normal. Revisa la pestaña "Actions" en GitHub para ver el resultado.');
     }
+}
+
+// Espera a que aparezca y termine la ejecución del workflow disparada recién,
+// revisando cada 3 segundos, hasta 90 segundos en total.
+async function pollWorkflowRun(config, dispatchTime, submitBtn) {
+    const runsUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/actions/workflows/manual-publish.yml/runs?event=workflow_dispatch&per_page=5`;
+    const maxWaitMs = 90000;
+    const start = Date.now();
+
+    let runId = null;
+    while (Date.now() - start < maxWaitMs) {
+        await new Promise(r => setTimeout(r, 3000));
+        try {
+            const res = await fetch(runsUrl, { headers: { 'Authorization': `token ${config.token}` } });
+            if (res.ok) {
+                const data = await res.json();
+                const candidate = (data.workflow_runs || []).find(run => new Date(run.created_at) >= dispatchTime);
+                if (candidate) {
+                    runId = candidate.id;
+                    if (candidate.status === 'completed') {
+                        return candidate.conclusion === 'success' ? 'success' : 'failure';
+                    }
+                    submitBtn.innerText = 'Publicando... (' + candidate.status + ')';
+                }
+            }
+        } catch (e) {}
+    }
+    return 'timeout';
 }
 
 function renderImagePreview() {
@@ -284,9 +292,35 @@ function addImage() {
     const url = document.getElementById('image-url').value.trim();
     if (url) { currentImages.push(url); document.getElementById('image-url').value = ''; renderImagePreview(); }
 }
+// --- Fuente de datos real: siempre se lee news.json en vivo desde GitHub,
+// nunca de localStorage (localStorage puede quedar desactualizado apenas
+// otra persona, o la automatización, publican algo). ---
+let currentNewsList = [];
+
+function slugifyJs(text) {
+    return (text || '').toString()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '') || 'articulo';
+}
+function articleUrlJs(n) {
+    return `https://enfoquemundial.com/${slugifyJs(n.category)}/${slugifyJs(n.title)}-${n.id}/`;
+}
+
+async function fetchLiveNews(config) {
+    const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.dataPath}`;
+    const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
+    if (!res.ok) throw new Error('No se pudo leer el estado actual del sitio desde GitHub.');
+    const data = await res.json();
+    const text = decodeURIComponent(escape(atob(data.content)));
+    return JSON.parse(text);
+}
+
 function copyArticleLink(id) {
-    const SITE_URL = 'https://enfoquemundial.com';
-    const url = `${SITE_URL}/article.html?id=${id}`;
+    const n = currentNewsList.find(a => a.id == id);
+    const url = n ? articleUrlJs(n) : '';
+    if (!url) return;
     const btn = document.getElementById(`copy-btn-${id}`);
     const showCopied = () => {
         if (!btn) return;
@@ -301,15 +335,26 @@ function copyArticleLink(id) {
     }
 }
 
-function renderAdminList() {
-    const news = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+async function renderAdminList() {
     const container = document.getElementById('admin-news-list');
     if (!container) return;
-    if (news.length === 0) {
+    const config = getGitHubConfig();
+    if (!config) {
+        container.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Configura tu GitHub primero.</div>`;
+        return;
+    }
+    container.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Cargando noticias...</div>`;
+    try {
+        currentNewsList = await fetchLiveNews(config);
+    } catch (e) {
+        container.innerHTML = `<div class="p-10 text-center text-red-500 italic">${e.message}</div>`;
+        return;
+    }
+    if (currentNewsList.length === 0) {
         container.innerHTML = `<div class="p-10 text-center text-gray-400 italic">No hay noticias.</div>`;
         return;
     }
-    container.innerHTML = news.map(n => `
+    container.innerHTML = currentNewsList.map(n => `
         <div class="bg-white p-4 rounded-2xl flex justify-between items-center shadow-sm border mb-2">
             <div class="flex items-center gap-4">
                 <img src="${n.images[0]}" class="w-12 h-12 rounded-lg object-cover">
@@ -324,8 +369,9 @@ function renderAdminList() {
     `).join('');
     if (window.lucide) lucide.createIcons();
 }
+
 function editNews(id) {
-    const news = (JSON.parse(localStorage.getItem(STORAGE_KEY)) || []).find(n => n.id == id);
+    const news = currentNewsList.find(n => n.id == id);
     if (!news) return;
     document.getElementById('edit-id').value = news.id;
     document.getElementById('title').value = news.title;
@@ -337,15 +383,21 @@ function editNews(id) {
     showSection('create');
     renderImagePreview();
 }
-function deleteNews(id) {
-    if (confirm('¿Eliminar noticia?')) {
-        const updated = (JSON.parse(localStorage.getItem(STORAGE_KEY)) || []).filter(n => n.id != id);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-        const config = getGitHubConfig();
-        if (config) {
-            syncNewsToGitHub(updated, config).then(() => syncSitemapToGitHub(updated, config));
-        }
-        renderAdminList();
+
+async function deleteNews(id) {
+    if (!confirm('¿Eliminar esta noticia? Esto la borra del sitio de verdad, no solo de la lista.')) return;
+    const config = getGitHubConfig();
+    if (!config) { alert('Configura tu GitHub primero.'); return; }
+
+    const btn = document.getElementById(`copy-btn-${id}`)?.parentElement?.querySelector('button:last-child') || null;
+    if (btn) { btn.disabled = true; btn.innerText = 'Borrando...'; }
+
+    try {
+        await dispatchPublish({ action: 'delete', id: id }, config, btn || { innerText: '' });
+    } catch (err) {
+        alert('❌ ' + err.message);
+        if (btn) { btn.disabled = false; btn.innerText = 'Borrar'; }
     }
 }
+
 function logout() { localStorage.removeItem('enfoque_mundial_logged'); window.location.href = 'index.html'; }

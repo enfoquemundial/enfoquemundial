@@ -25,253 +25,293 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1786923630881</loc>
+    <loc>https://enfoquemundial.com/cultura/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/politica/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/politica-internacional/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/tecnologia/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/videojuegos/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/autor/esfrailin-quezada/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/autor/irelsa-nunez/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/autor/redaccion/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/cultura/parana-lee-ofrece-jornada-cultural-con-entrada-gratuita-este-domingo-1786923630881/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1786912247613</loc>
+    <loc>https://enfoquemundial.com/mundo/espana-enfrenta-una-creciente-crisis-de-desertificacion-con-mas-de-la-mitad-de-su-territorio-en-riesgo-1786912247613/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1786899283618</loc>
+    <loc>https://enfoquemundial.com/cultura/la-promesa-nuevos-giros-dramaticos-marcaran-la-semana-del-10-al-14-de-agosto-1786899283618/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1786899085297</loc>
+    <loc>https://enfoquemundial.com/politica/aumentos-salariales-en-salud-y-educacion-avances-que-no-llegan-completos-al-bolsillo-1786899085297/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1786898844512</loc>
+    <loc>https://enfoquemundial.com/finanzas/inversores-de-wall-street-reducen-posiciones-en-argentina-ante-incertidumbre-politica-1786898844512/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1786897852032</loc>
+    <loc>https://enfoquemundial.com/politica/minas-implementa-operativo-de-fiscalizacion-para-combatir-distorsiones-economicas-1786897852032/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778314457297</loc>
+    <loc>https://enfoquemundial.com/politica/republica-dominicana-fortalece-alianza-con-costa-rica-para-impulsar-inversion-y-cooperacion-regional-1778314457297/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778314285074</loc>
+    <loc>https://enfoquemundial.com/politica/luis-abinader-ordena-detener-proyecto-minero-romero-tras-protestas-en-san-juan-1778314285074/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778314110601</loc>
+    <loc>https://enfoquemundial.com/tecnologia/america-latina-enfrenta-aumento-historico-de-ciberataques-contra-bancos-y-servicios-publicos-1778314110601/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778314003483</loc>
+    <loc>https://enfoquemundial.com/politica/europa-acelera-el-desarrollo-militar-tras-aumento-de-tensiones-globales-y-amenazas-hibridas-1778314003483/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778313908007</loc>
+    <loc>https://enfoquemundial.com/politica/china-y-estados-unidos-elevan-la-tension-global-por-nuevas-disputas-comerciales-y-energeticas-1778313908007/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778313757639</loc>
+    <loc>https://enfoquemundial.com/tecnologia/google-prepara-una-revolucion-en-android-y-la-inteligencia-artificial-para-2026-1778313757639/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778313719556</loc>
+    <loc>https://enfoquemundial.com/tecnologia/la-computacion-cuantica-se-acerca-a-su-primer-uso-comercial-real-en-2026-1778313719556/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778313667550</loc>
+    <loc>https://enfoquemundial.com/tecnologia/la-robotica-humanoide-avanza-hacia-su-primera-adopcion-industrial-a-gran-escala-1778313667550/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778313619206</loc>
+    <loc>https://enfoquemundial.com/tecnologia/google-acelera-la-carrera-global-de-la-inteligencia-artificial-con-nuevas-herramientas-alianzas-militares-y-avances-en-android-1778313619206/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778313379010</loc>
+    <loc>https://enfoquemundial.com/tecnologia/la-inteligencia-artificial-ya-crea-mas-de-un-tercio-de-los-nuevos-podcast-en-internet-1778313379010/</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778224629834</loc>
+    <loc>https://enfoquemundial.com/cultura/ishowspeed-y-alofoke-protagonizan-polemica-tras-speed-afirmar-que-alguien-envio-bots-a-su-transmision-1778224629834/</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778142140534</loc>
+    <loc>https://enfoquemundial.com/videojuegos/gta-6-dispara-la-expectativa-mundial-y-revoluciona-la-industria-del-entretenimiento-digital-1778142140534/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778141965053</loc>
+    <loc>https://enfoquemundial.com/tecnologia/freepik-inicia-una-nueva-etapa-global-impulsada-por-inteligencia-artificial-y-transformacion-creativa-digital-1778141965053/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778141651442</loc>
+    <loc>https://enfoquemundial.com/videojuegos/la-industria-de-los-videojuegos-vive-una-nueva-era-en-2026-inteligencia-artificial-mundos-abiertos-gigantes-y-record-de-jugadores-1778141651442/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778141454481</loc>
+    <loc>https://enfoquemundial.com/tecnologia/nvidia-enfrenta-su-mayor-desafio-en-la-era-de-la-inteligencia-artificial-mientras-gigantes-tecnologicos-desarrollan-sus-propios-chips-1778141454481/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778141338897</loc>
+    <loc>https://enfoquemundial.com/tecnologia/la-revolucion-digital-en-america-latina-como-la-inteligencia-artificial-y-la-tecnologia-estan-cambiando-la-vida-de-millones-en-2026-1778141338897/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778140995684</loc>
+    <loc>https://enfoquemundial.com/tecnologia/china-acelera-su-carrera-espacial-y-prepara-una-historica-mision-para-competir-con-estados-unidos-en-la-luna-1778140995684/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778140692566</loc>
+    <loc>https://enfoquemundial.com/tecnologia/amsterdam-declara-guerra-tecnologica-a-las-big-tech-y-busca-independizarse-de-google-amazon-y-microsoft-1778140692566/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778140562040</loc>
+    <loc>https://enfoquemundial.com/politica-internacional/nueva-ofensiva-migratoria-en-estados-unidos-provoca-temor-por-redadas-y-deportaciones-masivas-1778140562040/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778140327886</loc>
+    <loc>https://enfoquemundial.com/politica-internacional/crece-la-tension-mundial-por-posible-acuerdo-entre-estados-unidos-e-iran-para-evitar-una-crisis-energetica-global-1778140327886/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778140208521</loc>
+    <loc>https://enfoquemundial.com/tecnologia/la-inteligencia-artificial-acelera-la-transformacion-digital-en-america-latina-y-preocupa-por-el-impacto-laboral-1778140208521/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778139943653</loc>
+    <loc>https://enfoquemundial.com/politica-internacional/gobierno-de-trump-intensifica-batalla-legal-contra-the-new-york-times-por-presunta-discriminacion-laboral-1778139943653/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778139761235</loc>
+    <loc>https://enfoquemundial.com/politica-internacional/melania-trump-destaca-el-lado-humano-del-presidente-durante-homenaje-a-familias-militares-1778139761235/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778134650255</loc>
+    <loc>https://enfoquemundial.com/cultura/alofoke-asegura-que-speed-podria-superar-a-mrbeast-tras-romper-record-historico-en-directo-1778134650255/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778129054513</loc>
+    <loc>https://enfoquemundial.com/videojuegos/gta-6-rompe-internet-nuevamente-tras-nuevas-filtraciones-y-teorias-sobre-el-mapa-mas-grande-de-la-saga-1778129054513/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778128796482</loc>
+    <loc>https://enfoquemundial.com/deportes/joven-atleta-rompe-record-historico-y-se-convierte-en-sensacion-mundial-tras-una-carrera-inesperada-1778128796482/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778128688386</loc>
+    <loc>https://enfoquemundial.com/mundo/extrano-fenomeno-luminoso-en-el-oceano-sorprende-a-turistas-y-cientificos-durante-la-madrugada-1778128688386/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778128518819</loc>
+    <loc>https://enfoquemundial.com/tecnologia/miles-de-usuarios-abandonan-bancos-tradicionales-tras-auge-de-nuevas-plataformas-digitales-de-pago-1778128518819/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778128392761</loc>
+    <loc>https://enfoquemundial.com/tecnologia/cientificos-detectan-misteriosa-senal-proveniente-del-espacio-profundo-y-sorprenden-a-la-comunidad-astronomica-1778128392761/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778128074831</loc>
+    <loc>https://enfoquemundial.com/tecnologia/nueva-inteligencia-artificial-capaz-de-crear-videos-ultra-realistas-desata-debate-mundial-en-internet-1778128074831/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778122701944</loc>
+    <loc>https://enfoquemundial.com/cultura/ishowspeed-rompe-record-historico-en-republica-dominicana-tras-aparicion-junto-a-alofoke-1778122701944/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778117636235</loc>
+    <loc>https://enfoquemundial.com/finanzas/el-mercado-cripto-vuelve-a-explotar-inversionistas-corren-hacia-las-monedas-digitales-tras-nueva-ola-de-ganancias-1778117636235/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778117402299</loc>
+    <loc>https://enfoquemundial.com/cultura/festival-cultural-reune-a-miles-de-personas-y-revive-las-tradiciones-que-estaban-desapareciendo-1778117402299/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778117055959</loc>
+    <loc>https://enfoquemundial.com/deportes/joven-promesa-sorprende-al-mundo-del-futbol-tras-llevar-a-su-equipo-a-una-final-historica-1778117055959/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778116350519</loc>
+    <loc>https://enfoquemundial.com/tecnologia/del-celular-al-imperio-digital-pequenos-emprendedores-estan-convirtiendo-redes-sociales-en-negocios-millonarios-1778116350519/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://enfoquemundial.com/article.html?id=1778115703584</loc>
+    <loc>https://enfoquemundial.com/tecnologia/la-inteligencia-artificial-ya-reemplaza-tareas-humanas-en-miles-de-pequenas-empresas-de-latinoamerica-1778115703584/</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
