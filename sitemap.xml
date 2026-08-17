@@ -35,6 +35,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/mundo/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/politica/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -68,6 +73,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/mundo/creadora-de-contenido-cubana-obtiene-regularizacion-migratoria-en-mexico-y-responde-criticas-sobre-impuestos-1786949097423/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/deportes/fallece-tommy-john-leyenda-del-beisbol-cuyo-nombre-marco-la-historia-de-la-medicina-deportiva-1786947393783/</loc>
