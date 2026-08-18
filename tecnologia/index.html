@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../logo/logo%20vectorizado.svg">
+    <link rel="icon" type="image/svg+xml" href="../logo/favicon.svg">
     <title>Tecnología | Enfoque Mundial</title>
     <meta name="description" content="Últimas noticias de Tecnología en Enfoque Mundial. Periodismo verificado con perspectiva global.">
     <meta name="robots" content="index, follow">
@@ -17,11 +17,21 @@
     <meta name="twitter:description" content="Últimas noticias de Tecnología en Enfoque Mundial. Periodismo verificado con perspectiva global.">
     <link rel="canonical" href="https://enfoquemundial.com/tecnologia/">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <!-- Consentimiento de cookies: por defecto todo denegado hasta que el
+         visitante elija — Google Consent Mode. Debe ir ANTES de cargar gtag. -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        gtag("consent", "default", {
+            "ad_storage": "denied",
+            "analytics_storage": "denied",
+            "ad_user_data": "denied",
+            "ad_personalization": "denied"
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <script>
         gtag("js", new Date());
         gtag("config", "G-JGGDQ7PN0E");
     </script>
@@ -63,7 +73,7 @@
 <div class="bg-white border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center gap-6 overflow-x-auto py-3 no-scrollbar">
-            <a href="https://enfoquemundial.com/cultura/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Cultura</a><a href="https://enfoquemundial.com/mundo/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Mundo</a><a href="https://enfoquemundial.com/politica/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Política</a><a href="https://enfoquemundial.com/finanzas/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Finanzas</a><a href="https://enfoquemundial.com/tecnologia/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Tecnología</a><a href="https://enfoquemundial.com/videojuegos/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Videojuegos</a><a href="https://enfoquemundial.com/politica-internacional/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Política Internacional</a><a href="https://enfoquemundial.com/deportes/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Deportes</a>
+            <a href="https://enfoquemundial.com/politica/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Política</a><a href="https://enfoquemundial.com/politica-internacional/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Política Internacional</a><a href="https://enfoquemundial.com/mundo/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Mundo</a><a href="https://enfoquemundial.com/deportes/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Deportes</a><a href="https://enfoquemundial.com/cultura/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Cultura</a><a href="https://enfoquemundial.com/finanzas/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Finanzas</a><a href="https://enfoquemundial.com/tecnologia/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Tecnología</a><a href="https://enfoquemundial.com/videojuegos/" class="text-xs font-bold uppercase tracking-wide text-gray-600 hover:text-blue-600 whitespace-nowrap transition-colors">Videojuegos</a>
         </div>
     </div>
 </div>
@@ -277,17 +287,63 @@
         </div>
     </div>
 </footer>
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-5 hidden">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-4">
+        <p class="text-sm text-gray-600 flex-1">
+            Usamos cookies propias y de terceros (como Google Analytics) para analizar el uso del sitio. Puedes aceptarlas o rechazarlas — las esenciales para que el sitio funcione se mantienen siempre activas.
+            <a href="../privacidad.html" class="text-blue-600 hover:underline">Más información</a>
+        </p>
+        <div class="flex gap-2 flex-shrink-0">
+            <button onclick="rejectCookies()" class="px-4 py-2 text-sm font-semibold text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Rechazar</button>
+            <button onclick="acceptCookies()" class="px-4 py-2 text-sm font-semibold text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">Aceptar</button>
+        </div>
+    </div>
+</div>
 <script src="../js/app.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     lucide.createIcons();
     document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
     document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    initCookieBanner();
 });
 function searchNews() {
     const q = document.getElementById('searchInput').value.trim();
     if (!q) return;
     location.href = '../buscar/index.html?q=' + encodeURIComponent(q);
+}
+
+// --- Consentimiento de cookies ---
+function initCookieBanner() {
+    const saved = localStorage.getItem('cookie_consent');
+    if (saved === 'accepted') {
+        applyConsent(true);
+    } else if (saved === 'rejected') {
+        applyConsent(false);
+    } else {
+        const banner = document.getElementById('cookie-banner');
+        if (banner) banner.classList.remove('hidden');
+    }
+}
+function applyConsent(granted) {
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', {
+        'ad_storage': granted ? 'granted' : 'denied',
+        'analytics_storage': granted ? 'granted' : 'denied',
+        'ad_user_data': granted ? 'granted' : 'denied',
+        'ad_personalization': granted ? 'granted' : 'denied'
+    });
+}
+function acceptCookies() {
+    localStorage.setItem('cookie_consent', 'accepted');
+    applyConsent(true);
+    document.getElementById('cookie-banner').classList.add('hidden');
+}
+function rejectCookies() {
+    localStorage.setItem('cookie_consent', 'rejected');
+    applyConsent(false);
+    document.getElementById('cookie-banner').classList.add('hidden');
 }
 </script>
 </body>
