@@ -2,11 +2,20 @@ name: Auto-publicar noticias
 
 on:
   schedule:
-    - cron: '0 12 * * *'
+    # Horarios en UTC. Santo Domingo es UTC-4, así que:
+    # 11:00 UTC = 7:00 AM RD  | 13:30 UTC = 9:30 AM RD
+    # 16:00 UTC = 12:00 PM RD | 18:30 UTC = 2:30 PM RD
+    # 21:00 UTC = 5:00 PM RD  | 23:30 UTC = 7:30 PM RD
+    # 01:30 UTC = 9:30 PM RD  | 03:30 UTC = 11:30 PM RD
+    - cron: '0 11 * * *'
+    - cron: '30 13 * * *'
     - cron: '0 16 * * *'
-    - cron: '0 20 * * *'
+    - cron: '30 18 * * *'
+    - cron: '0 21 * * *'
     - cron: '30 23 * * *'
-  workflow_dispatch: {}
+    - cron: '30 1 * * *'
+    - cron: '30 3 * * *'
+  workflow_dispatch: {}   # permite correrlo manualmente desde la pestaña "Actions" en GitHub, para probar
 
 permissions:
   contents: write
@@ -19,7 +28,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          persist-credentials: false
 
       - name: Configurar Python
         uses: actions/setup-python@v5

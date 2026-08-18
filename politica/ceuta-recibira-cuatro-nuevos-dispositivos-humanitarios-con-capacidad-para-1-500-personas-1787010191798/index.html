@@ -19,14 +19,28 @@
     <link rel="canonical" href="https://enfoquemundial.com/politica/ceuta-recibira-cuatro-nuevos-dispositivos-humanitarios-con-capacidad-para-1-500-personas-1787010191798/">
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Ceuta recibirá cuatro nuevos dispositivos humanitarios con capacidad para 1.500 personas", "description": "La ministra de Migraciones visitó este lunes la ciudad autónoma de Ceuta para anunciar la implementación de cuatro nuevos dispositivos de atención humanitari...", "image": ["https://images.unsplash.com/photo-1758206523680-efdd259f9ffb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDMyMTk3fDB8MXxzZWFyY2h8MXx8aHVtYW5pdGFyaWFuJTIwYWlkJTIwZmFjaWxpdHl8ZW58MHwwfHx8MTc4NzAxMDE5MXww&ixlib=rb-4.1.0&q=80&w=1080"], "datePublished": "2026-08-17T23:43:11.798071+00:00", "dateModified": "2026-08-17T23:43:11.798071+00:00", "author": {"@type": "Person", "name": "Irelsa Nuñez"}, "publisher": {"@type": "Organization", "name": "Enfoque Mundial", "logo": {"@type": "ImageObject", "url": "https://enfoquemundial.com/logo/logo%20vectorizado.svg"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://enfoquemundial.com/politica/ceuta-recibira-cuatro-nuevos-dispositivos-humanitarios-con-capacidad-para-1-500-personas-1787010191798/"}, "articleSection": "Politica"}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://enfoquemundial.com/"}, {"@type": "ListItem", "position": 2, "name": "Politica", "item": "https://enfoquemundial.com/politica/"}, {"@type": "ListItem", "position": 3, "name": "Ceuta recibirá cuatro nuevos dispositivos humanitarios con capacidad para 1.500 personas"}]}</script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <!-- Consentimiento de cookies: por defecto todo denegado hasta que el
+         visitante elija — Google Consent Mode. Debe ir ANTES de cargar gtag. -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        gtag("consent", "default", {
+            "ad_storage": "denied",
+            "analytics_storage": "denied",
+            "ad_user_data": "denied",
+            "ad_personalization": "denied"
+        });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGGDQ7PN0E"></script>
+    <script>
         gtag("js", new Date());
         gtag("config", "G-JGGDQ7PN0E");
     </script>
+
+    <!-- Google AdSense — código de verificación y anuncios -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5715984507479482"
+     crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../../css/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -153,17 +167,63 @@
         </div>
     </div>
 </footer>
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-5 hidden">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-4">
+        <p class="text-sm text-gray-600 flex-1">
+            Usamos cookies propias y de terceros (como Google Analytics) para analizar el uso del sitio. Puedes aceptarlas o rechazarlas — las esenciales para que el sitio funcione se mantienen siempre activas.
+            <a href="../../privacidad.html" class="text-blue-600 hover:underline">Más información</a>
+        </p>
+        <div class="flex gap-2 flex-shrink-0">
+            <button onclick="rejectCookies()" class="px-4 py-2 text-sm font-semibold text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Rechazar</button>
+            <button onclick="acceptCookies()" class="px-4 py-2 text-sm font-semibold text-white bg-black rounded-lg hover:bg-gray-800 transition-colors">Aceptar</button>
+        </div>
+    </div>
+</div>
 <script src="../../js/app.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     lucide.createIcons();
     document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
     document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    initCookieBanner();
 });
 function searchNews() {
     const q = document.getElementById('searchInput').value.trim();
     if (!q) return;
     location.href = '../../buscar/index.html?q=' + encodeURIComponent(q);
+}
+
+// --- Consentimiento de cookies ---
+function initCookieBanner() {
+    const saved = localStorage.getItem('cookie_consent');
+    if (saved === 'accepted') {
+        applyConsent(true);
+    } else if (saved === 'rejected') {
+        applyConsent(false);
+    } else {
+        const banner = document.getElementById('cookie-banner');
+        if (banner) banner.classList.remove('hidden');
+    }
+}
+function applyConsent(granted) {
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', {
+        'ad_storage': granted ? 'granted' : 'denied',
+        'analytics_storage': granted ? 'granted' : 'denied',
+        'ad_user_data': granted ? 'granted' : 'denied',
+        'ad_personalization': granted ? 'granted' : 'denied'
+    });
+}
+function acceptCookies() {
+    localStorage.setItem('cookie_consent', 'accepted');
+    applyConsent(true);
+    document.getElementById('cookie-banner').classList.add('hidden');
+}
+function rejectCookies() {
+    localStorage.setItem('cookie_consent', 'rejected');
+    applyConsent(false);
+    document.getElementById('cookie-banner').classList.add('hidden');
 }
 </script>
 </body>
