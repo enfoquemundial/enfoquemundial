@@ -35,6 +35,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/finanzas/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/mundo/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -73,6 +78,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/finanzas/japan-airlines-anuncia-descuentos-en-vuelos-internacionales-tras-caida-del-precio-del-petroleo-1787166184544/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/cultura/jorge-rausch-se-despide-con-emotivas-palabras-de-participante-eliminada-en-masterchef-celebrity-colombia-1787156354151/</loc>
