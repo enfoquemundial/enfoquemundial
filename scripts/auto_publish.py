@@ -19,11 +19,13 @@ pero también se puede correr a mano con:  python3 scripts/auto_publish.py
 """
 
 import os
+import re
 import sys
 import json
 import random
 import time
 from datetime import datetime, timezone
+from difflib import SequenceMatcher
 
 import requests
 
@@ -108,18 +110,64 @@ Devuelve SOLO un objeto JSON válido, sin texto adicional, sin markdown, con est
 
 
 # --- Imagen libre de derechos relacionada al tema ---
-def fetch_image(query):
+STOPWORDS_ES = {
+    "el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del", "en",
+    "y", "a", "que", "por", "con", "para", "su", "sus", "es", "se", "al",
+    "lo", "como", "más", "sobre", "entre", "tras", "ante", "nuevo", "nueva",
+    "nuevos", "nuevas",
+}
+
+
+def significant_words(title):
+    words = re.findall(r"[a-záéíóúñ]+", title.lower())
+    return {w for w in words if w not in STOPWORDS_ES and len(w) > 2}
+
+
+def word_overlap(a, b):
+    wa, wb = significant_words(a), significant_words(b)
+    if not wa or not wb:
+        return 0.0
+    return len(wa & wb) / len(wa | wb)
+
+
+def is_duplicate_title(new_title, existing_titles, char_threshold=0.5, word_threshold=0.35):
+    """Compara el título nuevo contra todos los ya publicados con DOS métodos
+    combinados — similitud de caracteres y solapamiento de palabras clave —
+    para detectar reescrituras del mismo evento, no solo copias exactas.
+    Calibrado con casos reales del sitio; no es perfecto (un parafraseo muy
+    libre del mismo evento puede no detectarse), pero evita falsos positivos
+    bloqueando noticias genuinamente distintas."""
+    new_norm = new_title.lower().strip()
+    for existing in existing_titles:
+        char_ratio = SequenceMatcher(None, new_norm, existing.lower().strip()).ratio()
+        word_ratio = word_overlap(new_title, existing)
+        if char_ratio >= char_threshold or word_ratio >= word_threshold:
+            return True, existing, max(char_ratio, word_ratio)
+    return False, None, 0.0
+
+
+def fetch_image(query, used_images=None):
+    """Busca una foto en Unsplash. Pide varios resultados y elige el primero
+    que NO se haya usado ya en el sitio, para evitar repetir la misma imagen
+    en dos noticias distintas cuando la búsqueda coincide (ej. dos noticias
+    de "tecnología" devolviendo la misma foto top del buscador)."""
     if not UNSPLASH_ACCESS_KEY:
         return None
+    used_images = used_images or set()
     try:
         r = requests.get(
             "https://api.unsplash.com/search/photos",
-            params={"query": query, "per_page": 1, "orientation": "landscape"},
+            params={"query": query, "per_page": 10, "orientation": "landscape"},
             headers={"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"},
             timeout=20,
         )
         r.raise_for_status()
         results = r.json().get("results", [])
+        for photo in results:
+            url = photo["urls"]["regular"]
+            if url not in used_images:
+                return url
+        # Si las 10 primeras ya están usadas (poco probable), devuelve la primera igual
         if results:
             return results[0]["urls"]["regular"]
     except Exception as e:
@@ -145,12 +193,23 @@ def main():
         print(f"Aviso: categoría '{category}' no reconocida, usando 'Mundo' por defecto.")
         category = "Mundo"
 
-    print("Buscando imagen libre de derechos...")
-    image_query = generated.get("image_query", "").strip() or category
-    image_url = fetch_image(image_query) or "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200"
-
     with open(NEWS_PATH, encoding="utf-8") as f:
         news = json.load(f)
+
+    print("Verificando que no sea una noticia repetida...")
+    existing_titles = [n["title"] for n in news]
+    is_dup, matched_title, ratio = is_duplicate_title(generated["title"], existing_titles)
+    if is_dup:
+        print(f"Se detectó una noticia muy similar ya publicada (similitud {ratio:.0%}):")
+        print(f"  Nueva:      {generated['title']}")
+        print(f"  Ya publicada: {matched_title}")
+        print("Abortando esta corrida sin publicar (mejor no repetir que duplicar).")
+        sys.exit(0)
+
+    print("Buscando imagen libre de derechos...")
+    used_images = {img for n in news for img in n.get("images", [])}
+    image_query = generated.get("image_query", "").strip() or category
+    image_url = fetch_image(image_query, used_images) or "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200"
 
     new_entry = {
         "id": int(time.time() * 1000),
