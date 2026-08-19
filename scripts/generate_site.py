@@ -497,28 +497,78 @@ def generate_article_page(n, news):
     return url
 
 
+CATEGORY_PAGE_SIZE = 20
+
+
+def pagination_nav(current_page, total_pages, base_url):
+    """Barra de números de página al final de un listado — enlaces reales,
+    rastreables por Google, no botones que dependan de JavaScript."""
+    if total_pages <= 1:
+        return ""
+    links = []
+    for p in range(1, total_pages + 1):
+        page_url = base_url if p == 1 else f"{base_url}pagina/{p}/"
+        active = p == current_page
+        cls = "bg-black text-white" if active else "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
+        links.append(f'<a href="{page_url}" class="w-9 h-9 flex items-center justify-center rounded-lg text-sm font-semibold {cls}">{p}</a>')
+    prev_html = ""
+    if current_page > 1:
+        prev_url = base_url if current_page == 2 else f"{base_url}pagina/{current_page - 1}/"
+        prev_html = f'<a href="{prev_url}" class="w-9 h-9 flex items-center justify-center rounded-lg text-sm font-semibold bg-white text-gray-700 hover:bg-gray-100 border border-gray-200">&larr;</a>'
+    next_html = ""
+    if current_page < total_pages:
+        next_url = f"{base_url}pagina/{current_page + 1}/"
+        next_html = f'<a href="{next_url}" class="w-9 h-9 flex items-center justify-center rounded-lg text-sm font-semibold bg-white text-gray-700 hover:bg-gray-100 border border-gray-200">&rarr;</a>'
+    return f'<nav class="flex items-center justify-center gap-2 mt-14" aria-label="Paginación">{prev_html}{"".join(links)}{next_html}</nav>'
+
+
 def generate_category_page(category, news):
+    """Genera TODAS las páginas de una categoría, paginadas de a
+    CATEGORY_PAGE_SIZE noticias — nunca todo en una sola página larga.
+    Devuelve (url_pagina_1, noindex_pagina_1) para mantener compatibilidad
+    con el resto del generador (sitemap, etc. usan generate_category_pages)."""
+    return generate_category_pages(category, news)[0]
+
+
+def generate_category_pages(category, news):
     url = category_url(category)
     articles = [a for a in news if a["category"] == category]
     articles.sort(key=lambda a: a["date"], reverse=True)
     description = f"Últimas noticias de {category} en Enfoque Mundial. Periodismo verificado con perspectiva global."
-    crumbs = [("Inicio", f"{SITE_URL}/"), (category, None)]
-    cards = "".join(article_card(a, url) for a in articles)
-    noindex = len(articles) < MIN_ARTICLES_CATEGORY_INDEXABLE
-    body = f"""
+    total = len(articles)
+    total_pages = max(1, -(-total // CATEGORY_PAGE_SIZE))  # división hacia arriba
+    noindex_all = total < MIN_ARTICLES_CATEGORY_INDEXABLE
+
+    results = []
+    for page in range(1, total_pages + 1):
+        start = (page - 1) * CATEGORY_PAGE_SIZE
+        page_articles = articles[start:start + CATEGORY_PAGE_SIZE]
+        page_url = url if page == 1 else f"{url}pagina/{page}/"
+        crumbs = [("Inicio", f"{SITE_URL}/"), (category, url if page > 1 else None)]
+        if page > 1:
+            crumbs.append((f"Página {page}", None))
+        cards = "".join(article_card(a, url) for a in page_articles)
+        pag_html = pagination_nav(page, total_pages, url)
+        title_suffix = f" — Página {page}" if page > 1 else ""
+        body = f"""
 {nav(url, news)}
-{breadcrumbs(crumbs, url)}
+{breadcrumbs(crumbs, page_url)}
 <main class="max-w-7xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-serif font-bold mb-10">{esc(category)}</h1>
+    <h1 class="text-3xl font-serif font-bold mb-2">{esc(category)}</h1>
+    {f'<p class="text-gray-400 text-sm mb-8">Página {page} de {total_pages}</p>' if total_pages > 1 else '<div class="mb-8"></div>'}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {cards if articles else '<p class="text-gray-400 col-span-3 py-10 text-center">Todavía no hay noticias en esta categoría.</p>'}
+        {cards if page_articles else '<p class="text-gray-400 col-span-3 py-10 text-center">Todavía no hay noticias en esta categoría.</p>'}
     </div>
+    {pag_html}
 </main>
-{footer(url)}
+{footer(page_url)}
 """
-    html = head(f"{category} | Enfoque Mundial", description, url, noindex=noindex) + body
-    write(f"{category_slug(category)}/index.html", html)
-    return url, noindex
+        html = head(f"{category}{title_suffix} | Enfoque Mundial", description, page_url, noindex=noindex_all) + body
+        rel_path = f"{category_slug(category)}/index.html" if page == 1 else f"{category_slug(category)}/pagina/{page}/index.html"
+        write(rel_path, html)
+        results.append((page_url, noindex_all))
+
+    return results
 
 
 def generate_author_page(author, news):
@@ -652,7 +702,10 @@ def generate_sitemap(news):
         count = sum(1 for a in news if a["category"] == cat)
         if count < MIN_ARTICLES_CATEGORY_INDEXABLE:
             continue  # página delgada, marcada noindex — no la metemos en el sitemap
-        parts.append(f"\n  <url>\n    <loc>{category_url(cat)}</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>")
+        total_pages = max(1, -(-count // CATEGORY_PAGE_SIZE))
+        for page in range(1, total_pages + 1):
+            page_url = category_url(cat) if page == 1 else f"{category_url(cat)}pagina/{page}/"
+            parts.append(f"\n  <url>\n    <loc>{page_url}</loc>\n    <changefreq>daily</changefreq>\n    <priority>{'0.8' if page == 1 else '0.6'}</priority>\n  </url>")
     for author in authors:
         count = sum(1 for a in news if a["author"] == author)
         if count < MIN_ARTICLES_AUTHOR_INDEXABLE:

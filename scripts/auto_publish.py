@@ -39,6 +39,19 @@ SITE_URL = generate_site.SITE_URL
 CATEGORIES = ["Mundo", "Politica", "Politica internacional", "Tecnología", "Finanzas", "Deportes", "Cultura"]
 AUTHORS = ["Esfrailin Quezada", "Irelsa Nuñez", "Redacción"]
 
+# Imágenes de reserva verificadas, usadas SOLO si la búsqueda en Unsplash
+# falla por completo. Son varias (no una sola fija) para que, si dos
+# artículos fallan en Unsplash el mismo día, no terminen compartiendo la
+# misma imagen genérica — se elige la primera de esta lista que no esté
+# ya usada en el sitio.
+FALLBACK_IMAGES = [
+    "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1761095596765-c8abe01d3aea?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1486416900247-bae18f26d1d8?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1576766125535-b04e15fd0273?w=1200&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1759215524472-1b0686fdbd87?w=1200&auto=format&fit=crop&q=80",
+]
+
 GH_TOKEN = os.environ["GH_TOKEN"].strip()
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"].strip()
 GNEWS_API_KEY = os.environ["GNEWS_API_KEY"].strip()
@@ -175,6 +188,18 @@ def fetch_image(query, used_images=None):
     return None
 
 
+def pick_fallback_image(used_images=None):
+    """Elige una imagen de reserva de FALLBACK_IMAGES que no esté ya usada
+    en el sitio. Se usa solo cuando la búsqueda real en Unsplash falla por
+    completo (sin conexión, límite de la API, etc.) — así, si eso le pasa a
+    dos artículos el mismo día, no terminan compartiendo la misma imagen."""
+    used_images = used_images or set()
+    for img in FALLBACK_IMAGES:
+        if img not in used_images:
+            return img
+    return FALLBACK_IMAGES[0]  # si por algún motivo ya se usaron todas, la primera igual
+
+
 def main():
     print("Buscando noticias reales recientes...")
     real_articles = fetch_real_news()
@@ -209,7 +234,7 @@ def main():
     print("Buscando imagen libre de derechos...")
     used_images = {img for n in news for img in n.get("images", [])}
     image_query = generated.get("image_query", "").strip() or category
-    image_url = fetch_image(image_query, used_images) or "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200"
+    image_url = fetch_image(image_query, used_images) or pick_fallback_image(used_images)
 
     new_entry = {
         "id": int(time.time() * 1000),
