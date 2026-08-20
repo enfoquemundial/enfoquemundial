@@ -60,6 +60,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/tecnologia/pagina/2/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/videojuegos/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -78,6 +83,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/tecnologia/daf-prepara-el-lanzamiento-de-su-plataforma-mas-innovadora-para-el-mercado-chileno-1787261381615/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/politica-internacional/bombardeo-ruso-deja-13-muertos-y-33-heridos-en-la-region-de-kiev-1787253026936/</loc>
