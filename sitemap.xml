@@ -55,6 +55,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/politica/pagina/2/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/politica-internacional/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -88,6 +93,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/politica/aznar-exige-medidas-firmes-ante-la-situacion-migratoria-en-ceuta-1787877638713/</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/politica/peru-designa-coordinador-oficial-para-la-visita-papal-de-leon-xiv-prevista-para-2026-1787871728935/</loc>
