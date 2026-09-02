@@ -40,6 +40,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/deportes/pagina/2/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/finanzas/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -93,6 +98,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/deportes/julian-alvarez-se-queda-en-el-atletico-de-madrid-tras-el-cierre-del-mercado-de-fichajes-1788369376294/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/finanzas/cruz-roja-colombiana-sortea-premio-mayor-de-10-000-millones-de-pesos-en-su-loteria-1788361196465/</loc>
