@@ -70,6 +70,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/politica-internacional/pagina/2/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/tecnologia/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -98,6 +103,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/politica-internacional/giorgia-meloni-alcanza-marca-historica-como-la-premier-con-mayor-permanencia-en-italia-1788509447056/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/politica/gobierno-colombiano-garantiza-reserva-de-pasaportes-por-cuatro-meses-tras-orden-judicial-1788502055200/</loc>
