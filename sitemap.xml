@@ -35,6 +35,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/cultura/pagina/3/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/deportes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -108,6 +113,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/cultura/veronica-villarroel-responde-a-acusaciones-de-favoritismo-en-programa-de-canto-1788934228359/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/finanzas/el-dolar-continua-su-descenso-en-colombia-en-medio-de-tensiones-en-medio-oriente-1788916762591/</loc>
