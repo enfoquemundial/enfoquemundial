@@ -55,6 +55,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://enfoquemundial.com/finanzas/pagina/2/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://enfoquemundial.com/mundo/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -113,6 +118,12 @@
     <loc>https://enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://enfoquemundial.com/finanzas/chile-inicia-entrega-de-bono-extraordinario-de-30-mil-por-cada-hijo-menor-de-14-anos-1789200332230/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://enfoquemundial.com/politica-internacional/cuba-recibe-respaldo-unanime-en-el-consejo-de-derechos-humanos-ante-el-embargo-estadounidense-1789192792376/</loc>
