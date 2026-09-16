@@ -154,7 +154,7 @@ def head(title, description, canonical_url, og_type="website", og_image="", extr
     </script>
 
     <!-- Google AdSense — código de verificación y anuncios -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5715984507479482"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4437962050949835"
      crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{rel(canonical_url)}css/tailwind.min.css">
