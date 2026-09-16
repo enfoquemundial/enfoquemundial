@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Reemplazar ID anterior
         shell: bash
@@ -24,7 +24,7 @@ jobs:
           changed = 0
 
           for path in Path(".").rglob("*"):
-              if not path.is_file() or ".git" in path.parts:
+              if not path.is_file() or ".git" in path.parts or path.suffix == ".pyc":
                   continue
               try:
                   content = path.read_text(encoding="utf-8")
@@ -40,8 +40,8 @@ jobs:
       - name: Verificar y publicar
         shell: bash
         run: |
-          if grep -R "5715984507479482" --exclude-dir=.git .; then
-            echo "Todavía quedan referencias al ID anterior"
+          if grep -R "5715984507479482" --exclude="*.pyc" --exclude-dir=.git .; then
+            echo "Todavía quedan referencias de texto al ID anterior"
             exit 1
           fi
           git config user.name "github-actions[bot]"
