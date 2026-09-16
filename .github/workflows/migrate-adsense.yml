@@ -13,18 +13,24 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v5
 
-      - name: Reemplazar ID anterior
+      - name: Reemplazar y verificar ID anterior
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
-          old = "5715984507479482"
+          old = "571598" + "4507479482"
           new = "4437962050949835"
           changed = 0
+          skipped = {Path(".github/workflows/migrate-adsense.yml")}
 
           for path in Path(".").rglob("*"):
-              if not path.is_file() or ".git" in path.parts or path.suffix == ".pyc":
+              if (
+                  not path.is_file()
+                  or ".git" in path.parts
+                  or path.suffix == ".pyc"
+                  or path in skipped
+              ):
                   continue
               try:
                   content = path.read_text(encoding="utf-8")
@@ -34,16 +40,30 @@ jobs:
                   path.write_text(content.replace(old, new), encoding="utf-8")
                   changed += 1
 
+          remaining = []
+          for path in Path(".").rglob("*"):
+              if (
+                  not path.is_file()
+                  or ".git" in path.parts
+                  or path.suffix == ".pyc"
+                  or path in skipped
+              ):
+                  continue
+              try:
+                  content = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if old in content:
+                  remaining.append(str(path))
+
           print(f"Archivos actualizados: {changed}")
+          if remaining:
+              raise SystemExit(f"Referencias restantes: {remaining}")
           PY
 
-      - name: Verificar y publicar
+      - name: Publicar cambios
         shell: bash
         run: |
-          if grep -R "5715984507479482" --exclude="*.pyc" --exclude-dir=.git .; then
-            echo "Todavía quedan referencias de texto al ID anterior"
-            exit 1
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
