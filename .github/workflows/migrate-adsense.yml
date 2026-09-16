@@ -1,0 +1,55 @@
+name: Actualizar ID de AdSense
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-adsense-id:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Reemplazar ID anterior
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          old = "5715984507479482"
+          new = "4437962050949835"
+          changed = 0
+
+          for path in Path(".").rglob("*"):
+              if not path.is_file() or ".git" in path.parts:
+                  continue
+              try:
+                  content = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if old in content:
+                  path.write_text(content.replace(old, new), encoding="utf-8")
+                  changed += 1
+
+          print(f"Archivos actualizados: {changed}")
+          PY
+
+      - name: Verificar y publicar
+        shell: bash
+        run: |
+          if grep -R "5715984507479482" --exclude-dir=.git .; then
+            echo "Todavía quedan referencias al ID anterior"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No hay cambios pendientes"
+            exit 0
+          fi
+          git commit -m "Actualizar ID de AdSense en todo el sitio"
+          git push
