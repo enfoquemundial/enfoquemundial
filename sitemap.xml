@@ -55,11 +55,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/finanzas/pagina/2/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/mundo/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -76,11 +71,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/politica/pagina/2/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/pagina/3/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -233,12 +223,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/deportes/elche-busca-su-primera-victoria-del-torneo-ante-un-real-madrid-en-racha-ofensiva-1789411809167/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/tecnologia/google-pixel-10a-la-apuesta-de-gama-media-que-revoluciona-el-mercado-con-descuento-incluido-1789404528337/</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -269,12 +253,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/deportes/cruz-azul-logra-dramatica-victoria-ante-america-tras-dominar-el-inicio-del-clasico-joven-1789333272623/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/politica/zohran-mamdani-el-primer-alcalde-socialista-de-nueva-york-que-promete-transformar-la-politica-1789318934040/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -299,12 +277,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/deportes/el-clasico-del-futbol-peruano-se-juega-hoy-en-matute-por-la-novena-fecha-del-clausura-1789262004059/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/finanzas/cuba-impulsa-participacion-del-sector-privado-en-el-pago-de-pensiones-a-jubilados-1789253563573/</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -324,12 +296,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/incertidumbre-sobre-el-regreso-de-rafael-cavada-a-chilevision-tras-abrupta-salida-del-noticiero-1789230434799/</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/deportes/boca-juniors-se-impuso-3-1-ante-central-cordoba-con-destacadas-actuaciones-ofensivas-1789221258730/</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -383,12 +349,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/finanzas/bonoloto-sorteo-del-10-de-septiembre-busca-igualar-record-historico-de-premio-1789114497039/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/cultura/cuba-conmemora-el-dia-del-trabajador-social-con-reconocimiento-a-su-labor-en-comunidades-vulnerables-1789089277306/</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -402,12 +362,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/cordoba-logra-resultados-destacados-en-ciencias-mientras-argentina-cae-en-evaluacion-pisa-1789074220003/</loc>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/tecnologia/hideo-kojima-y-xbox-se-asocian-tras-la-cancelacion-de-physint-por-parte-de-playstation-1789066138279/</loc>
     <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -461,12 +415,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/tecnologia/investigador-senior-abandona-anthropic-alertando-sobre-riesgos-existenciales-de-la-inteligencia-artificial-1788966114893/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/politica-internacional/secretario-de-estado-estadounidense-inicia-gira-por-sudamerica-con-visitas-a-gobiernos-de-derecha-1788942017906/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -474,12 +422,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/veronica-villarroel-responde-a-acusaciones-de-favoritismo-en-programa-de-canto-1788934228359/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/finanzas/el-dolar-continua-su-descenso-en-colombia-en-medio-de-tensiones-en-medio-oriente-1788916762591/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -539,19 +481,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/politica/espana-lanza-plataforma-digital-para-facilitar-acceso-a-viviendas-de-alquiler-publico-1788817320717/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/mundo/expertos-identifican-11-alimentos-y-bebidas-que-podrian-incrementar-los-niveles-de-estres-1788805272522/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/deportes/independiente-respira-tras-su-primera-victoria-bajo-la-direccion-de-jadson-viera-1788797911389/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -659,12 +589,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/politica-internacional/caricom-analiza-crisis-de-seguridad-y-proceso-electoral-en-haiti-1788587813065/</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/deportes/alberto-gamero-retorna-a-millonarios-para-enfrentar-nuevos-desafios-1788570563443/</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -749,20 +673,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/finanzas/santander-implementa-programa-transitorio-de-ahorro-energetico-ante-amenaza-de-el-nino-1788415217923/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/mundo/ovejas-abandonadas-en-isla-del-pacifico-desarrollaron-mutaciones-evolutivas-tras-44-anos-de-aislamiento-1788398133400/</loc>
     <lastmod>2026-09-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/detienen-a-exfiscal-de-rosario-en-operativo-de-la-policia-federal-1788390206361/</loc>
-    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -797,19 +709,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/finanzas/dolar-cierra-con-descenso-tras-jornada-volatil-en-el-mercado-cambiario-1788311367092/</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/cultura/cienfuegos-adelanta-su-feria-agricola-semanal-al-viernes-4-de-manera-excepcional-1788303938383/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/espana-destina-168-millones-de-euros-en-ayudas-urgentes-para-ceuta-1788289157731/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -869,19 +769,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/politica-internacional/cuba-estudia-flexibilizar-el-comercio-exterior-para-el-sector-privado-y-la-inversion-extranjera-1788160169330/</loc>
-    <lastmod>2026-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/cultura/septimo-encierro-en-san-sebastian-de-los-reyes-concluye-sin-incidentes-graves-pese-a-su-alta-velocidad-1788131768136/</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/andy-lopez-beltran-acumula-84-de-cobertura-mediatica-negativa-en-agosto-1788124905632/</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -942,12 +830,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/edificio-de-la-cepal-en-chile-celebra-seis-decadas-como-referente-arquitectonico-moderno-1788024044748/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/finanzas/super-astro-luna-expectativa-entre-colombianos-por-sorteo-del-ultimo-viernes-de-agosto-1788017473427/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1019,12 +901,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/politica/aznar-exige-medidas-firmes-ante-la-situacion-migratoria-en-ceuta-1787877638713/</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/politica/peru-designa-coordinador-oficial-para-la-visita-papal-de-leon-xiv-prevista-para-2026-1787871728935/</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -1032,18 +908,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/finanzas/bonoloto-celebra-sorteo-del-27-de-agosto-con-expectativa-nacional-1787864115136/</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/diputados-aprueba-inocencia-fiscal-ii-y-el-proyecto-avanza-al-senado-1787841006178/</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/cultura/giuliana-herrera-niega-acusaciones-de-bullying-y-revela-tensiones-en-sus-inicios-televisivos-1787830647570/</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1057,12 +921,6 @@
   <url>
     <loc>https://www.enfoquemundial.com/cultura/sydney-sweeney-realiza-acrobacia-extrema-sobre-un-avion-en-vuelo-1787790665495/</loc>
     <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/tecnologia/ejecutivo-de-instagram-declara-ante-tribunal-por-demanda-sobre-proteccion-de-menores-1787776336070/</loc>
-    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1121,12 +979,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/deportes/enzo-fernandez-protagoniza-una-noche-de-contrastes-en-la-victoria-del-chelsea-sobre-el-fulham-1787667732757/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/politica/nuevo-liderazgo-del-partido-en-vinales-tras-aprobacion-del-pleno-municipal-1787630959934/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -1134,12 +986,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/lali-esposito-habla-sobre-su-distanciamiento-con-la-china-suarez-1787615014167/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica-internacional/television-irani-genera-controversia-internacional-por-segmento-sobre-hijo-del-presidente-estadounidense-1787607058227/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1158,12 +1004,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/estudiante-oaxaquena-rechaza-ingreso-a-la-unam-para-estudiar-en-escuela-medico-militar-1787570990849/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/ministro-espanol-oscar-puente-se-proyecta-como-posible-sucesor-de-pedro-sanchez-en-el-psoe-1787539281962/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1205,18 +1045,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/mundo/cifra-alarmante-siete-de-cada-diez-fallecidos-por-influenza-en-chile-no-estaban-vacunados-1787458202623/</loc>
-    <lastmod>2026-08-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/deportes/jose-mourinho-regresa-al-real-madrid-tras-13-anos-para-iniciar-la-temporada-2026-27-de-laliga-1787452858141/</loc>
-    <lastmod>2026-08-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/cultura/holguin-inicia-venta-de-uniformes-escolares-para-el-nuevo-curso-1787442111238/</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1248,12 +1076,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/region-de-coquimbo-se-prepara-para-intensas-lluvias-con-acumulados-de-hasta-80-milimetros-1787397659550/</loc>
-    <lastmod>2026-08-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/deportes/sporting-cristal-y-alianza-atletico-se-enfrentan-en-partido-clave-del-torneo-clausura-1787371650529/</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1325,25 +1147,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/cultura/giancarlo-cossio-se-emociona-al-hablar-sobre-la-situacion-de-angie-jibaja-1787235018335/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/deportes/puyol-respalda-a-rafa-marquez-como-nuevo-entrenador-destaca-su-capacidad-para-manejar-la-presion-1787225230546/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/tecnologia/detectan-la-estrella-mas-veloz-de-la-via-lactea-orbitando-un-agujero-negro-supermasivo-1787198923459/</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/deportes/cienciano-busca-sellar-historica-clasificacion-ante-botafogo-en-brasil-1787193234219/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1379,12 +1183,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/deportes/banfield-avanza-a-cuartos-de-final-de-copa-argentina-tras-definicion-por-penales-ante-midland-1787138776767/</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/cultura/akriila-alcanza-la-portada-de-la-prestigiosa-revista-britanica-nme-1787112543707/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1403,18 +1201,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/tecnologia/meta-se-enfrenta-a-demanda-historica-por-supuesta-adiccion-de-menores-en-redes-sociales-1787096593205/</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/cultura/el-chiringuito-debuta-con-exito-en-energy-y-supera-a-cadenas-tradicionales-1787088349586/</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/deportes/elche-rescata-un-empate-ante-deportivo-en-el-inicio-de-temporada-1787080018522/</loc>
     <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -1427,12 +1213,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.enfoquemundial.com/politica/ceuta-recibira-cuatro-nuevos-dispositivos-humanitarios-con-capacidad-para-1-500-personas-1787010191798/</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.enfoquemundial.com/politica/presidente-de-ceuta-da-ultimatum-al-gobierno-espanol-por-crisis-migratoria-1786998841507/</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1440,12 +1220,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/politica-internacional/fracasa-memorandum-entre-estados-unidos-e-iran-tras-vencimiento-del-plazo-de-60-dias-1786983316334/</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/morena-arremete-contra-pri-y-pan-por-senalamientos-vinculados-a-andy-lopez-beltran-1786970282264/</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1470,18 +1244,6 @@
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/espana-enfrenta-una-creciente-crisis-de-desertificacion-con-mas-de-la-mitad-de-su-territorio-en-riesgo-1786912247613/</loc>
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/cultura/la-promesa-nuevos-giros-dramaticos-marcaran-la-semana-del-10-al-14-de-agosto-1786899283618/</loc>
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.enfoquemundial.com/politica/aumentos-salariales-en-salud-y-educacion-avances-que-no-llegan-completos-al-bolsillo-1786899085297/</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

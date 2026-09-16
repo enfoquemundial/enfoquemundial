@@ -110,6 +110,32 @@ def load_news():
         return json.load(f)
 
 
+def image_identity(url):
+    """Identidad estable de una imagen, ignorando parámetros de recorte."""
+    return (url or "").strip().split("?", 1)[0]
+
+
+def validate_unique_primary_image(entry, news, exclude_id=None):
+    """Impide que dos artículos utilicen la misma imagen principal."""
+    primary = image_identity((entry.get("images") or [""])[0])
+    if not primary:
+        return True
+    duplicate = next(
+        (
+            n for n in news
+            if n.get("id") != exclude_id
+            and image_identity((n.get("images") or [""])[0]) == primary
+        ),
+        None,
+    )
+    if duplicate:
+        raise ArticleValidationError(
+            f"id={entry.get('id')}: la imagen principal ya está usada por "
+            f"id={duplicate.get('id')} ('{duplicate.get('title', '')}')"
+        )
+    return True
+
+
 # --- Fragmentos de plantilla compartidos (mismo diseño/branding actual) ---
 
 def head(title, description, canonical_url, og_type="website", og_image="", extra_ld="", noindex=False):
@@ -866,6 +892,7 @@ def publish_new(entry, news):
     """Valida y agrega un artículo nuevo. Lanza ArticleValidationError si no
     cumple el mínimo — en ese caso NO se debe escribir nada a disco."""
     validate_article(entry)
+    validate_unique_primary_image(entry, news)
     updated_news = [entry] + news
     with open(NEWS_PATH, "w", encoding="utf-8") as f:
         json.dump(updated_news, f, ensure_ascii=False, indent=2)
@@ -891,6 +918,7 @@ def apply_edit(article_id, changes, news):
             updated_entry[key] = changes[key]
 
     validate_article(updated_entry)  # si falla, no se escribe nada
+    validate_unique_primary_image(updated_entry, news, exclude_id=article_id)
 
     updated_news = [updated_entry if n["id"] == article_id else n for n in news]
     with open(NEWS_PATH, "w", encoding="utf-8") as f:
