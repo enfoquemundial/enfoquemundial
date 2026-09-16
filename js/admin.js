@@ -305,7 +305,7 @@ function slugifyJs(text) {
         .replace(/(^-|-$)/g, '') || 'articulo';
 }
 function articleUrlJs(n) {
-    return `https://enfoquemundial.com/${slugifyJs(n.category)}/${slugifyJs(n.title)}-${n.id}/`;
+    return `https://www.enfoquemundial.com/${slugifyJs(n.category)}/${slugifyJs(n.title)}-${n.id}/`;
 }
 
 async function fetchLiveNews(config) {

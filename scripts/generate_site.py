@@ -26,7 +26,7 @@ import subprocess
 import unicodedata
 from datetime import datetime, timezone
 
-SITE_URL = "https://enfoquemundial.com"
+SITE_URL = "https://www.enfoquemundial.com"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NEWS_PATH = os.path.join(ROOT, "data", "news.json")
 GITHUB_OWNER = "enfoquemundial"

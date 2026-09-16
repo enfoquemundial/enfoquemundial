@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://enfoquemundial.com/sitemap.xml
+Sitemap: https://www.enfoquemundial.com/sitemap.xml

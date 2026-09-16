@@ -1,6 +1,6 @@
 const GITHUB_USER = 'enfoquemundial';
 const GITHUB_REPO = 'enfoquemundial';
-const SITE_URL = 'https://enfoquemundial.com';
+const SITE_URL = 'https://www.enfoquemundial.com';
 const DATA_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/data/news.json`;
 
 async function fetchSingleNews() {
