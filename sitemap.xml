@@ -55,6 +55,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/finanzas/pagina/2/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/mundo/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -113,6 +118,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/finanzas/cuba-anuncia-reformas-graduales-en-su-sistema-bancario-para-modernizar-servicios-digitales-1789608795938/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/multiples-sismos-sacuden-colombia-en-las-primeras-horas-del-miercoles-1789601651391/</loc>
