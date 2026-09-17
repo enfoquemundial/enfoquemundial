@@ -160,44 +160,52 @@ def is_duplicate_title(new_title, existing_titles, char_threshold=0.5, word_thre
 
 
 def fetch_image(query, used_images=None):
-    """Busca una foto en Unsplash. Pide varios resultados y elige el primero
-    que NO se haya usado ya en el sitio, para evitar repetir la misma imagen
-    en dos noticias distintas cuando la búsqueda coincide (ej. dos noticias
-    de "tecnología" devolviendo la misma foto top del buscador)."""
+    """Busca una foto de Unsplash cuya fotografía base no esté ya usada.
+
+    Unsplash cambia los parámetros de recorte en cada respuesta, aunque sea
+    la misma foto. Por eso se compara la identidad normalizada que también
+    usa generate_site.py, y se consulta una página variable con más opciones.
+    """
     if not UNSPLASH_ACCESS_KEY:
         return None
-    used_images = used_images or set()
+    used_keys = {
+        generate_site.image_identity(url)
+        for url in (used_images or set())
+    }
     try:
         r = requests.get(
             "https://api.unsplash.com/search/photos",
-            params={"query": query, "per_page": 10, "orientation": "landscape"},
+            params={
+                "query": query,
+                "per_page": 30,
+                "page": random.randint(1, 3),
+                "orientation": "landscape",
+            },
             headers={"Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"},
             timeout=20,
         )
         r.raise_for_status()
         results = r.json().get("results", [])
+        random.shuffle(results)
         for photo in results:
             url = photo["urls"]["regular"]
-            if url not in used_images:
+            if generate_site.image_identity(url) not in used_keys:
                 return url
-        # Si las 10 primeras ya están usadas (poco probable), devuelve la primera igual
-        if results:
-            return results[0]["urls"]["regular"]
     except Exception as e:
         print(f"Aviso: no se pudo obtener imagen de Unsplash ({e})")
     return None
 
 
 def pick_fallback_image(used_images=None):
-    """Elige una imagen de reserva de FALLBACK_IMAGES que no esté ya usada
-    en el sitio. Se usa solo cuando la búsqueda real en Unsplash falla por
-    completo (sin conexión, límite de la API, etc.) — así, si eso le pasa a
-    dos artículos el mismo día, no terminan compartiendo la misma imagen."""
-    used_images = used_images or set()
+    """Elige una reserva que tampoco coincida tras normalizar su URL."""
+    used_keys = {
+        generate_site.image_identity(url)
+        for url in (used_images or set())
+    }
     for img in FALLBACK_IMAGES:
-        if img not in used_images:
+        if generate_site.image_identity(img) not in used_keys:
             return img
-    return FALLBACK_IMAGES[0]  # si por algún motivo ya se usaron todas, la primera igual
+    return None
 
 
 def main():
@@ -234,7 +242,21 @@ def main():
     print("Buscando imagen libre de derechos...")
     used_images = {img for n in news for img in n.get("images", [])}
     image_query = generated.get("image_query", "").strip() or category
-    image_url = fetch_image(image_query, used_images) or pick_fallback_image(used_images)
+    image_url = None
+    search_queries = [
+        image_query,
+        f"{category} editorial news",
+        "global news editorial",
+    ]
+    for query in search_queries:
+        image_url = fetch_image(query, used_images)
+        if image_url:
+            break
+    if not image_url:
+        image_url = pick_fallback_image(used_images)
+    if not image_url:
+        print("No se encontró una imagen única disponible. Se omite esta corrida sin error.")
+        sys.exit(0)
 
     new_entry = {
         "id": int(time.time() * 1000),
