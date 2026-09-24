@@ -105,6 +105,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/tecnologia/pagina/3/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/videojuegos/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -123,6 +128,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/tecnologia/meta-presenta-gafas-de-realidad-virtual-mas-ligeras-con-pantalla-5k-y-control-por-voz-1790278593726/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/politica/tasacion-pericial-de-joyas-recibidas-por-expresidente-espanol-apunta-a-posible-delito-fiscal-prescrito-1790264629759/</loc>
