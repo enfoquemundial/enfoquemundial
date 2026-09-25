@@ -95,6 +95,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/politica-internacional/pagina/3/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/tecnologia/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -128,6 +133,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/politica-internacional/guyana-insta-a-venezuela-a-respetar-decision-de-tribunal-internacional-sobre-territorio-disputado-1790316927409/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/deportes/seleccion-argentina-anuncia-venta-de-entradas-para-partido-amistoso-contra-benin-en-el-monumental-1790300405412/</loc>
