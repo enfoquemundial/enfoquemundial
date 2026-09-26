@@ -40,6 +40,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/cultura/pagina/4/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/deportes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -133,6 +138,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/cultura/fallece-eduardo-rodriguez-rodway-ultimo-miembro-original-de-la-legendaria-banda-triana-1790457784341/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/politica/pp-y-vox-respaldan-manifestacion-en-madrid-que-exige-elecciones-anticipadas-1790448646662/</loc>
