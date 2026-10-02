@@ -55,6 +55,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/deportes/pagina/3/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/finanzas/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -143,6 +148,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/deportes/sporting-cristal-arrasa-en-semifinal-de-la-copa-caliente-con-contundente-victoria-5-0-sobre-adt-1790924961519/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/tecnologia/xiaomi-17t-llega-al-mercado-con-oferta-especial-teleobjetivo-y-bateria-de-alta-capacidad-1790907677733/</loc>
