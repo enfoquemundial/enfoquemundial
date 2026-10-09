@@ -100,6 +100,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/politica/pagina/4/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/politica-internacional/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -148,6 +153,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/politica/partido-politico-espanol-solicita-suspension-de-elecciones-por-presuntas-irregularidades-en-el-censo-electoral-1791577445222/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/condenada-que-sobrevivio-a-ejecucion-fallida-en-tennessee-desarrolla-neumonia-1791572194959/</loc>
