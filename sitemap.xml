@@ -45,6 +45,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/cultura/pagina/5/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/deportes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -153,6 +158,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/cultura/jesica-cirio-recibio-a-su-segundo-hijo-en-buenos-aires-1791803692544/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/deportes/eduardo-escobar-queda-en-libertad-tras-seis-temporadas-con-tigres-de-aragua-1791790450621/</loc>
