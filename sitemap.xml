@@ -125,6 +125,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/politica-internacional/pagina/4/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/tecnologia/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -158,6 +163,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/politica-internacional/actor-brasileno-advierte-sobre-interes-estadounidense-en-recursos-minerales-estrategicos-1792223975299/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/falsa-alarma-de-terremoto-catastrofico-genera-panico-masivo-en-japon-1792215969632/</loc>
