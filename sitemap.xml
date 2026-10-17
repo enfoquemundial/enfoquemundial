@@ -145,6 +145,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/tecnologia/pagina/4/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/videojuegos/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -163,6 +168,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/tecnologia/el-nuevo-tesla-roadster-volador-desata-una-avalancha-de-memes-en-redes-sociales-1792255014845/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/politica/operativo-antidroga-deja-dos-detenidos-y-secuestro-de-cocaina-en-la-ciudad-capital-1792245897635/</loc>
