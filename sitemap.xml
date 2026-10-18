@@ -90,6 +90,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/mundo/pagina/4/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/politica/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -168,6 +173,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/mundo/fao-reconoce-el-aporte-de-cien-mujeres-asiaticas-a-la-agricultura-sostenible-1792286181663/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/experta-en-salud-integrativa-cuestiona-mitos-sobre-alimentos-considerados-saludables-1792277752391/</loc>
