@@ -75,6 +75,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/finanzas/pagina/3/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/mundo/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -173,6 +178,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/finanzas/ministro-de-hacienda-defiende-ajustes-fiscales-y-advierte-sobre-los-riesgos-del-gasto-ilimitado-1792633167071/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/policia-detiene-a-seis-personas-por-robo-que-termino-en-tragedia-de-adulta-mayor-en-burgos-1792626934367/</loc>
