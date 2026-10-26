@@ -120,6 +120,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/politica/pagina/5/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/politica-internacional/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -178,6 +183,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/politica/feijoo-responsabiliza-al-gobierno-de-sanchez-por-los-disturbios-en-barcelona-1792977910456/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/la-migracion-venezolana-abandona-chile-tras-el-deterioro-de-las-condiciones-economicas-y-sociales-1792962244979/</loc>
