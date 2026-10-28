@@ -50,6 +50,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/cultura/pagina/6/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/deportes/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -183,6 +188,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/cultura/television-espanola-conmemora-siete-decadas-desde-su-primera-emision-1793214125171/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/tecnologia/iphone-duo-enfrenta-problemas-en-pantallas-flexibles-tras-su-lanzamiento-1793206880764/</loc>
