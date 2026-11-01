@@ -70,6 +70,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/deportes/pagina/4/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/finanzas/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -188,6 +193,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/deportes/luis-alberto-orta-el-talento-que-enfrento-adversidades-en-el-mundial-de-luchas-1793563079697/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/cultura/lali-esposito-y-pedro-rosemblat-celebraron-su-union-en-matrimonio-1793557784296/</loc>
