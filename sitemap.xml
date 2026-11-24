@@ -175,6 +175,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/tecnologia/pagina/5/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/videojuegos/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -193,6 +198,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/tecnologia/apple-prepararia-nuevas-versiones-en-color-rojo-de-sus-dispositivos-emblematicos-1795562019662/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/mundo/vaticano-publica-diario-intimo-del-papa-francisco-con-revelaciones-sobre-visiones-misticas-y-crisis-espiritual-1795554034014/</loc>
