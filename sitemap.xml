@@ -155,6 +155,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.enfoquemundial.com/politica-internacional/pagina/5/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.enfoquemundial.com/tecnologia/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -198,6 +203,12 @@
     <loc>https://www.enfoquemundial.com/autor/redaccion/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.enfoquemundial.com/politica-internacional/nuevas-evidencias-vinculan-a-lider-politico-frances-con-mensajes-de-contenido-antisemita-1795738223662/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.enfoquemundial.com/politica/organizaciones-humanitarias-temen-que-retrasos-en-regularizacion-migratoria-queden-truncados-por-cambio-de-gobierno-1795732276244/</loc>
